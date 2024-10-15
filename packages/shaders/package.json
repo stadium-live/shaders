@@ -1,0 +1,26 @@
+{
+  "name": "@paper-design/shaders",
+  "version": "0.0.2",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "type-check": "tsc --project tsconfig.json"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "esbuild": "^0.24.0",
+    "typescript": "5.5.4"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1"
+  }
+}
