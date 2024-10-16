@@ -200,14 +200,14 @@ export class ShaderMount {
   };
 
   /** Start the animation loop, can be called during instantiation or later by an outside source */
-  public startAnimating = () => {
+  public startAnimating = (): void => {
     this.isAnimated = true;
     this.lastFrameTime = performance.now();
     this.rafId = requestAnimationFrame(this.render);
   };
 
   /** Stop the animation loop */
-  public stopAnimating = () => {
+  public stopAnimating = (): void => {
     this.isAnimated = false;
     if (this.rafId) {
       cancelAnimationFrame(this.rafId);
@@ -216,7 +216,9 @@ export class ShaderMount {
   };
 
   /** Update the uniforms that are provided by the outside shader */
-  public setUniforms = (newUniforms: Record<string, number | number[]>) => {
+  public setUniforms = (
+    newUniforms: Record<string, number | number[]>
+  ): void => {
     this.providedUniforms = { ...this.providedUniforms, ...newUniforms };
 
     // If we need to allow users to add uniforms after the shader has been created, we can do that here
@@ -228,7 +230,7 @@ export class ShaderMount {
   };
 
   /** Dispose of the shader mount, cleaning up all of the WebGL resources */
-  public dispose = () => {
+  public dispose = (): void => {
     this.hasBeenDisposed = true;
     this.stopAnimating();
     if (this.gl && this.program) {
@@ -325,8 +327,10 @@ function createProgram(
   return program;
 }
 
-/**  Convert color string to RGB (0 to 1 range) */
-export function getShaderColorFromString(colorString: string) {
+/**  Convert color string from HSL, RGB, or hex to 0-to-1-range-RGB array */
+export function getShaderColorFromString(
+  colorString: string
+): [number, number, number] {
   let r: number, g: number, b: number;
   if (colorString.startsWith('#')) {
     [r, g, b] = hexToRgb(colorString);

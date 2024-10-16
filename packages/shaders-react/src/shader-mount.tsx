@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { ShaderMount as ShaderMountVanilla } from '@paper-design/shaders';
 
-interface ShaderMountProps {
+export interface ShaderMountProps {
   ref?: React.RefObject<HTMLCanvasElement>;
   fragmentShader: string;
   style?: React.CSSProperties;
