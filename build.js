@@ -8,18 +8,9 @@ async function build(packageDir) {
   const outDir = `${packageDir}/dist`;
   const tsconfig = `${packageDir}/tsconfig.json`;
 
-  // ----- Clean the output directory ----- //
-  // execSync(`rm -rf ${outDir}`);
-
   // ----- Generate type declaration files ----- //
   execSync(`tsc --emitDeclarationOnly --declaration --outDir ${outDir} --project ${tsconfig}`);
   console.log(`Built ${outDir}/index.d.ts`);
-
-  // Moving away from bundling types since we have dependencies between packages working well, but leaving this here for reference for now
-  // Generate the d.ts bundle
-  // execSync(
-  //   `bun run dts-bundle-generator ${input} --o ${outDir}/index.d.ts --no-check`
-  // );
 
   // ----- Build the package ----- //
   // esbuild configuration
