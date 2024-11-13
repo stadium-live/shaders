@@ -3,10 +3,10 @@ export { ShaderMount } from './shader-mount';
 
 // ----- Fragment shaders ----- //
 /** An example fragment shader that renders a grainy texture over top of blobby animated clouds */
-export {
-  grainCloudsFragmentShader,
-  type GrainCloudsUniforms,
-} from './shaders/grain-clouds';
+export { grainCloudsFragmentShader, type GrainCloudsUniforms } from './shaders/grain-clouds';
+
+/** A shader that renders a mesh gradient with a rotating noise pattern and several layers of fractal noise */
+export { meshGradientFragmentShader, type MeshGradientUniforms } from './shaders/mesh-gradient';
 
 // ----- Uniform conversion utils ----- //
 export { getShaderColorFromString } from './shader-mount';
