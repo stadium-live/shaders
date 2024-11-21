@@ -2,6 +2,19 @@
 
 ![mesh-gradient-shader](https://github.com/user-attachments/assets/2db6e087-764c-4c36-bee7-451b09c4c91e)
 
+```jsx
+import { MeshGradient } from '@paper-design/shaders-react';
+
+<MeshGradient
+  colors={['#283BFC', '#FF2828', '#ddd']}
+  blur="0.6"
+  frequency="0.8"
+  animationSpeed="1"
+  style={{ width: 500, height: 200 }} />
+
+// these settings can be configured in code or designed in Paper
+```
+
 ### Goals:
 
 - Give designers a visual way to use common shaders in their designs
