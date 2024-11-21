@@ -1,5 +1,7 @@
 # Paper Shaders
 
+![mesh-gradient-shader](https://github.com/user-attachments/assets/2db6e087-764c-4c36-bee7-451b09c4c91e)
+
 ### Goals:
 
 - Give designers a visual way to use common shaders in their designs
