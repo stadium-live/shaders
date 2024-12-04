@@ -12,6 +12,7 @@ const NeuroNoiseExample = () => {
       colorBack="#030208"
       speed={1}
       scale={1}
+      brightness={1.3}
       style={{ position: 'fixed', width: '100%', height: '100%' }}
     />
   );
