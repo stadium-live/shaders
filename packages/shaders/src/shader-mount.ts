@@ -84,8 +84,9 @@ export class ShaderMount {
   };
 
   private handleResize = () => {
-    const newWidth = this.canvas.clientWidth;
-    const newHeight = this.canvas.clientHeight;
+    const pxRatio = Math.min(2, window.devicePixelRatio);
+    const newWidth = this.canvas.clientWidth * pxRatio;
+    const newHeight = this.canvas.clientHeight * pxRatio;
     if (this.canvas.width !== newWidth || this.canvas.height !== newHeight) {
       this.canvas.width = newWidth;
       this.canvas.height = newHeight;
