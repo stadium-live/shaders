@@ -35,7 +35,7 @@ export const NeuroNoiseWithControls = () => {
         {
           colorFront: { value: defaultParams.colorFront, order: 1 },
           colorBack: { value: defaultParams.colorBack, order: 2 },
-          scale: { value: defaultParams.scale, order: 3, min: 0.5, max: 3 },
+          scale: { value: defaultParams.scale, order: 3, min: 0.3, max: 3 },
           speed: { value: defaultParams.speed, order: 4, min: 0, max: 3 },
           brightness: { value: defaultParams.brightness, order: 5, min: 0.8, max: 2 },
         },

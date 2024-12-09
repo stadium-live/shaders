@@ -19,7 +19,7 @@ export const defaultPreset: NeuroNoisePreset = {
   params: {
     colorFront: '#c3a3ff',
     colorBack: '#000000',
-    scale: 1,
+    scale: .7,
     speed: 1,
     brightness: 1.3,
   },
@@ -30,9 +30,9 @@ const marblePreset: NeuroNoisePreset = {
   params: {
     colorFront: '#1d202f',
     colorBack: '#f7f7f7',
-    scale: 3,
+    scale: 1.2,
     speed: 0,
-    brightness: 1,
+    brightness: 1.1,
   },
 } as const;
 
