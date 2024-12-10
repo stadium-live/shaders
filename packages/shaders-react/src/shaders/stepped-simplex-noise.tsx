@@ -35,7 +35,22 @@ export const defaultPreset: SteppedSimplexNoisePreset = {
   },
 } as const;
 
-export const steppedSimplexNoisePresets: SteppedSimplexNoisePreset[] = [defaultPreset];
+const magmaPreset: SteppedSimplexNoisePreset = {
+  name: 'Magma',
+  params: {
+    ...defaultPreset.params,
+    color1: '#ba0000',
+    color2: '#db0505',
+    color3: '#f85300',
+    color4: '#e8ae00',
+    color5: '#fff0df',
+    speed: 0.2,
+    scale: 2,
+    stepsNumber: 8,
+  },
+};
+
+export const steppedSimplexNoisePresets: SteppedSimplexNoisePreset[] = [defaultPreset, magmaPreset];
 
 export const SteppedSimplexNoise = (props: SteppedSimplexNoiseProps): JSX.Element => {
   const uniforms: SteppedSimplexNoiseUniforms = useMemo(() => {
