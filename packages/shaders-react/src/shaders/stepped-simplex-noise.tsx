@@ -38,7 +38,6 @@ export const defaultPreset: SteppedSimplexNoisePreset = {
 const magmaPreset: SteppedSimplexNoisePreset = {
   name: 'Magma',
   params: {
-    ...defaultPreset.params,
     color1: '#ba0000',
     color2: '#db0505',
     color3: '#f85300',
