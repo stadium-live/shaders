@@ -15,6 +15,12 @@ export { type MeshGradientProps } from './shaders/mesh-gradient';
 export { type MeshGradientParams } from './shaders/mesh-gradient';
 export { type MeshGradientUniforms } from '@paper-design/shaders';
 
+// Smoke ring
+export { SmokeRing, smokeRingPresets } from './shaders/smoke-ring';
+export { type SmokeRingProps } from './shaders/smoke-ring';
+export { type SmokeRingParams } from './shaders/smoke-ring';
+export { type SmokeRingUniforms } from '@paper-design/shaders';
+
 // Neuro noise
 export { NeuroNoise, neuroNoisePresets } from './shaders/neuro-noise';
 export { type NeuroNoiseProps } from './shaders/neuro-noise';
