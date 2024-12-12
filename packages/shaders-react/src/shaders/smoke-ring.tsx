@@ -17,7 +17,8 @@ type SmokeRingPreset = { name: string; params: Required<SmokeRingParams> };
 export const defaultPreset: SmokeRingPreset = {
   name: 'Default',
   params: {
-    colorBack: 'hsla(0, 0%, 0%, 1)',
+    // Note: Keep default colors in HSLA format so that our Leva controls show a transparency channel (rgba and hex8 do not work)
+    colorBack: 'hsla(208, 54%, 7%, 1)',
     color1: 'hsla(0, 0%, 100%, 1)',
     color2: 'hsla(211, 100%, 64%, 1)',
     speed: 1,
@@ -26,7 +27,61 @@ export const defaultPreset: SmokeRingPreset = {
   },
 } as const;
 
-export const smokeRingPresets: SmokeRingPreset[] = [defaultPreset];
+export const cloudPreset: SmokeRingPreset = {
+  name: 'Cloud',
+  params: {
+    colorBack: 'hsla(218, 100%, 62%)',
+    color1: 'hsla(0, 0%, 100%)',
+    color2: 'hsla(0, 0%, 100%)',
+    speed: 1,
+    thickness: 0.7,
+    noiseScale: 1.8,
+  },
+};
+
+export const firePreset: SmokeRingPreset = {
+  name: 'Fire',
+  params: {
+    colorBack: 'hsla(20, 100%, 5%)',
+    color1: 'hsla(40, 100%, 50%)',
+    color2: 'hsla(0, 100%, 50%)',
+    speed: 4,
+    thickness: 0.35,
+    noiseScale: 1.4,
+  },
+};
+
+export const electricPreset: SmokeRingPreset = {
+  name: 'Electric',
+  params: {
+    colorBack: 'hsla(47, 50%, 7%)',
+    color1: 'hsla(47, 100%, 64%)',
+    color2: 'hsla(47, 100%, 64%)',
+    speed: 2.5,
+    thickness: 0.1,
+    noiseScale: 1.8,
+  },
+};
+
+export const poisonPreset: SmokeRingPreset = {
+  name: 'Poison',
+  params: {
+    colorBack: 'hsla(120, 100%, 3%)',
+    color1: 'hsla(120, 100%, 3%)',
+    color2: 'hsla(120, 100%, 66%)',
+    speed: 3,
+    thickness: 0.6,
+    noiseScale: 5,
+  },
+};
+
+export const smokeRingPresets: SmokeRingPreset[] = [
+  defaultPreset,
+  cloudPreset,
+  firePreset,
+  electricPreset,
+  poisonPreset,
+];
 
 export const SmokeRing = (props: SmokeRingProps): JSX.Element => {
   const uniforms: SmokeRingUniforms = useMemo(() => {

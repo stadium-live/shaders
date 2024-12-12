@@ -20,6 +20,7 @@ type DotsOrbitPreset = { name: string; params: Required<DotsOrbitParams> };
 export const defaultPreset: DotsOrbitPreset = {
   name: 'Default',
   params: {
+    // Note: Keep default colors in HSLA format so that our Leva controls show a transparency channel (rgba and hex8 do not work)
     color1: 'hsla(358.2, 66.1%, 48.6%, 1)',
     color2: 'hsla(145.2, 30.1%, 32.5%, 1)',
     color3: 'hsla(39.4, 87.7%, 52.4%, 1)',

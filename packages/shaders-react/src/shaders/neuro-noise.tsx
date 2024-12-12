@@ -27,6 +27,7 @@ export const defaultPreset: NeuroNoisePreset = {
 const marblePreset: NeuroNoisePreset = {
   name: 'Marble',
   params: {
+    // Note: Keep default colors in HSLA format so that our Leva controls show a transparency channel (rgba and hex8 do not work)
     colorFront: 'hsla(230, 24%, 15%, 1)',
     colorBack: 'hsla(0, 0%, 97%, 1)',
     scale: 1.2,

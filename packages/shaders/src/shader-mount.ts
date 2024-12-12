@@ -11,7 +11,7 @@ export class ShaderMount {
   private lastFrameTime = 0;
   /** Total time that we have played any animation, passed as a uniform to the shader for time-based VFX */
   private totalAnimationTime = 0;
-  /** The current speed that we progress through animation time (multiplies by delta time every update) */
+  /** The current speed that we progress through animation time (multiplies by delta time every update). Allows negatives to play in reverse. If set to 0, rAF will stop entirely so static shaders have no recurring performance costs */
   private speed = 1;
   /** Uniforms that are provided by the user for the specific shader being mounted (not including uniforms that this Mount adds, like time and resolution) */
   private providedUniforms: Record<string, number | number[]>;
@@ -25,11 +25,16 @@ export class ShaderMount {
     fragmentShader: string,
     uniforms: Record<string, number | number[]> = {},
     webGlContextAttributes?: WebGLContextAttributes,
-    speed = 1
+    /** The speed of the animation, or 0 to stop it. Supports negative values to play in reverse. */
+    speed = 1,
+    /** Pass a seed to offset the starting u_time value and give deterministic results*/
+    seed = 0
   ) {
     this.canvas = canvas;
     this.fragmentShader = fragmentShader;
     this.providedUniforms = uniforms;
+    // Base our starting animation time on the provided seed value
+    this.totalAnimationTime = seed;
 
     const gl = canvas.getContext('webgl', webGlContextAttributes);
     if (!gl) {
@@ -103,7 +108,7 @@ export class ShaderMount {
     const dt = currentTime - this.lastFrameTime;
     this.lastFrameTime = currentTime;
     // Increase the total animation time by dt * animationSpeed
-    if (this.speed > 0) {
+    if (this.speed !== 0) {
       this.totalAnimationTime += dt * this.speed;
     }
 
@@ -122,7 +127,7 @@ export class ShaderMount {
     this.gl.drawArrays(this.gl.TRIANGLES, 0, 6);
 
     // Loop if we're animating
-    if (this.speed > 0) {
+    if (this.speed !== 0) {
       this.requestRender();
     } else {
       this.rafId = null;
@@ -172,12 +177,18 @@ export class ShaderMount {
     });
   };
 
+  /** Set a seed to get a deterministic result */
+  public setSeed = (newSeed: number): void => {
+    this.totalAnimationTime = newSeed;
+    this.render(performance.now());
+  };
+
   /** Set an animation speed (or 0 to stop animation) */
   public setSpeed = (newSpeed: number = 1): void => {
     // Set the new animation speed
     this.speed = newSpeed;
 
-    if (this.rafId === null && newSpeed > 0) {
+    if (this.rafId === null && newSpeed !== 0) {
       // Moving from 0 to animating, kick off a new rAF loop
       this.lastFrameTime = performance.now();
       this.rafId = requestAnimationFrame(this.render);

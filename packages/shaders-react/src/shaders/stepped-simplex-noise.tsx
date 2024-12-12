@@ -23,13 +23,14 @@ type SteppedSimplexNoisePreset = { name: string; params: Required<SteppedSimplex
 export const defaultPreset: SteppedSimplexNoisePreset = {
   name: 'Default',
   params: {
+    // Note: Keep default colors in HSLA format so that our Leva controls show a transparency channel (rgba and hex8 do not work)
     color1: 'hsla(208.42, 24.68%, 45.29%, 1)',
     color2: 'hsla(94.07, 38.39%, 58.63%, 1)',
     color3: 'hsla(359.02, 93.88%, 61.57%, 1)',
     color4: 'hsla(42.35, 93.41%, 64.31%, 1)',
     color5: 'hsla(0, 0%, 100%, 1)',
     scale: 0.5,
-    speed: 0.6,
+    speed: 0.15,
     stepsNumber: 13,
   },
 } as const;
@@ -48,7 +49,40 @@ const magmaPreset: SteppedSimplexNoisePreset = {
   },
 };
 
-export const steppedSimplexNoisePresets: SteppedSimplexNoisePreset[] = [defaultPreset, magmaPreset];
+const bloodCellPreset: SteppedSimplexNoisePreset = {
+  name: 'Blood cell',
+  params: {
+    color1: '#30132f',
+    color2: '#540332',
+    color3: '#720d32',
+    color4: '#720d32',
+    color5: '#f4807c',
+    scale: 0.72,
+    speed: 0.22,
+    stepsNumber: 29,
+  },
+};
+
+const firstContactPreset: SteppedSimplexNoisePreset = {
+  name: 'First contact',
+  params: {
+    color1: '#e5bde5',
+    color2: '#150727',
+    color3: '#512a5a',
+    color4: '#deb0b0',
+    color5: '#ffebeb',
+    scale: 0.62,
+    speed: -0.1,
+    stepsNumber: 40,
+  },
+};
+
+export const steppedSimplexNoisePresets: SteppedSimplexNoisePreset[] = [
+  defaultPreset,
+  magmaPreset,
+  bloodCellPreset,
+  firstContactPreset,
+];
 
 export const SteppedSimplexNoise = (props: SteppedSimplexNoiseProps): JSX.Element => {
   const uniforms: SteppedSimplexNoiseUniforms = useMemo(() => {
