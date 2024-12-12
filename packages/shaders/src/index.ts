@@ -25,4 +25,4 @@ export { dotsOrbitFragmentShader, type DotsOrbitUniforms } from './shaders/dots-
 export { steppedSimplexNoiseFragmentShader, type SteppedSimplexNoiseUniforms } from './shaders/stepped-simplex-noise';
 
 // ----- Uniform conversion utils ----- //
-export { getShaderColorFromString } from './shader-mount';
+export { getShaderColorFromString } from './get-shader-color-from-string';

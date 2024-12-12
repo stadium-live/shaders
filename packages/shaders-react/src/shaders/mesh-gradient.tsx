@@ -17,10 +17,10 @@ type MeshGradientPreset = { name: string; params: Required<MeshGradientParams> }
 export const defaultPreset: MeshGradientPreset = {
   name: 'Default',
   params: {
-    color1: '#6a5496',
-    color2: '#9b8ab8',
-    color3: '#f5d03b',
-    color4: '#e48b97',
+    color1: 'hsla(260, 28%, 46%, 1)',
+    color2: 'hsla(262, 24%, 63%, 1)',
+    color3: 'hsla(48, 90%, 60%, 1)',
+    color4: 'hsla(352, 62%, 72%, 1)',
     speed: 0.1,
   },
 } as const;
@@ -28,10 +28,10 @@ export const defaultPreset: MeshGradientPreset = {
 export const beachPreset: MeshGradientPreset = {
   name: 'Beach',
   params: {
-    color1: '#b1f0f7',
-    color2: '#81bfda',
-    color3: '#f5f0cd',
-    color4: '#fada7a',
+    color1: 'hsla(186, 81%, 83%, 1)',
+    color2: 'hsla(198, 55%, 68%, 1)',
+    color3: 'hsla(53, 67%, 88%, 1)',
+    color4: 'hsla(45, 93%, 73%, 1)',
     speed: 0.1,
   },
 };

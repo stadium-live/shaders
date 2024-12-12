@@ -17,9 +17,9 @@ type NeuroNoisePreset = { name: string; params: Required<NeuroNoiseParams> };
 export const defaultPreset: NeuroNoisePreset = {
   name: 'Default',
   params: {
-    colorFront: '#c3a3ff',
-    colorBack: '#000000',
-    scale: .7,
+    colorFront: 'hsla(261, 100%, 82%, 1)',
+    colorBack: 'hsla(0, 0%, 0%, 1)',
+    scale: 0.7,
     speed: 1,
     brightness: 1.3,
   },
@@ -28,8 +28,8 @@ export const defaultPreset: NeuroNoisePreset = {
 const marblePreset: NeuroNoisePreset = {
   name: 'Marble',
   params: {
-    colorFront: '#1d202f',
-    colorBack: '#f7f7f7',
+    colorFront: 'hsla(230, 24%, 15%, 1)',
+    colorBack: 'hsla(0, 0%, 97%, 1)',
     scale: 1.2,
     speed: 0,
     brightness: 1.1,
