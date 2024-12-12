@@ -90,11 +90,28 @@ export const smokeRingFragmentShader = `
         thickness = pow(thickness, 2.);
 
         float ring_shape = get_ring_shape(uv * (.5 + .6 * noise), radius - .2 * thickness, radius + .5 * thickness);
+        ring_shape = clamp(ring_shape, 0., 1.);
+        
+        float ring_shape_outer = 1. - pow(ring_shape, 7.);
+        ring_shape_outer *= ring_shape;
+        
+        float ring_shape_inner = ring_shape - ring_shape_outer;
+        ring_shape_inner *= ring_shape;
 
-        vec4 color = mix(u_color1, u_color2, (.6 - .3 * pow(ring_shape, 3.)));
-        color = mix(color, u_color1, pow(ring_shape, 7.));
-        color = mix(u_colorBack, color, ring_shape);
+        ring_shape_outer *= u_color2.a;
+        ring_shape_inner *= u_color1.a;
 
-        gl_FragColor = color;
+        float background = 1. - ring_shape;
+        background *= u_colorBack.a;
+        
+        vec3 color = u_color2.rgb * ring_shape_outer;
+        color += u_color1.rgb * ring_shape_inner;
+        color += u_colorBack.rgb * background;
+        
+        float opacity = ring_shape_outer;
+        opacity += ring_shape_inner;
+        opacity += background;
+        
+        gl_FragColor = vec4(color, opacity);
     }
 `;
