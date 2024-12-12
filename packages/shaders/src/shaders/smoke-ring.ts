@@ -90,7 +90,6 @@ export const smokeRingFragmentShader = `
         thickness = pow(thickness, 2.);
 
         float ring_shape = get_ring_shape(uv * (.5 + .6 * noise), radius - .2 * thickness, radius + .5 * thickness);
-        ring_shape = clamp(ring_shape, 0., 1.);
         
         float ring_shape_outer = 1. - pow(ring_shape, 7.);
         ring_shape_outer *= ring_shape;
@@ -98,20 +97,19 @@ export const smokeRingFragmentShader = `
         float ring_shape_inner = ring_shape - ring_shape_outer;
         ring_shape_inner *= ring_shape;
 
-        ring_shape_outer *= u_color2.a;
-        ring_shape_inner *= u_color1.a;
-
-        float background = 1. - ring_shape;
-        background *= u_colorBack.a;
+        float background = u_colorBack.a;
         
-        vec3 color = u_color2.rgb * ring_shape_outer;
-        color += u_color1.rgb * ring_shape_inner;
-        color += u_colorBack.rgb * background;
+        float opacity = ring_shape_outer * u_color2.a;
+        opacity += ring_shape_inner * u_color1.a;
+        opacity += background * (1. - ring_shape_inner * u_color1.a - ring_shape_outer * u_color2.a);
         
-        float opacity = ring_shape_outer;
-        opacity += ring_shape_inner;
-        opacity += background;
+        vec3 color = u_colorBack.rgb * (1. - ring_shape) * background;
+        color += u_color2.rgb * ring_shape_outer * u_color2.a;
+        color += u_color1.rgb * ring_shape_inner * u_color1.a;
         
+        color += u_colorBack.rgb * ring_shape_inner * (1. - u_color1.a) * background;
+        color += u_colorBack.rgb * ring_shape_outer * (1. - u_color2.a) * background;
+                
         gl_FragColor = vec4(color, opacity);
     }
 `;
