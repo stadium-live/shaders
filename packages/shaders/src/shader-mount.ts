@@ -25,11 +25,16 @@ export class ShaderMount {
     fragmentShader: string,
     uniforms: Record<string, number | number[]> = {},
     webGlContextAttributes?: WebGLContextAttributes,
-    speed = 1
+    /** The speed of the animation, or 0 to stop it. Supports negative values to play in reverse. */
+    speed = 1,
+    /** Pass a seed to offset the starting u_time value and give deterministic results*/
+    seed = 0
   ) {
     this.canvas = canvas;
     this.fragmentShader = fragmentShader;
     this.providedUniforms = uniforms;
+    // Base our starting animation time on the provided seed value
+    this.totalAnimationTime = seed;
 
     const gl = canvas.getContext('webgl', webGlContextAttributes);
     if (!gl) {
@@ -170,6 +175,12 @@ export class ShaderMount {
         }
       }
     });
+  };
+
+  /** Set a seed to get a deterministic result */
+  public setSeed = (newSeed: number): void => {
+    this.totalAnimationTime = newSeed;
+    this.render(performance.now());
   };
 
   /** Set an animation speed (or 0 to stop animation) */

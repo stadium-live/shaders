@@ -8,6 +8,7 @@ export interface ShaderMountProps {
   uniforms?: Record<string, number | number[]>;
   webGlContextAttributes?: WebGLContextAttributes;
   speed?: number;
+  seed?: number;
 }
 
 /** Params that every shader can set as part of their controls */
@@ -20,6 +21,7 @@ export const ShaderMount: React.FC<ShaderMountProps> = ({
   uniforms = {},
   webGlContextAttributes,
   speed = 1,
+  seed = 0,
 }) => {
   const canvasRef = ref ?? useRef<HTMLCanvasElement>(null);
   const shaderMountRef = useRef<ShaderMountVanilla | null>(null);
@@ -31,7 +33,8 @@ export const ShaderMount: React.FC<ShaderMountProps> = ({
         fragmentShader,
         uniforms,
         webGlContextAttributes,
-        speed
+        speed,
+        seed
       );
     }
 
@@ -45,8 +48,9 @@ export const ShaderMount: React.FC<ShaderMountProps> = ({
   }, [uniforms]);
 
   useEffect(() => {
+    shaderMountRef.current?.setSeed(seed);
     shaderMountRef.current?.setSpeed(speed);
-  }, [speed]);
+  }, [speed, seed]);
 
   return <canvas ref={canvasRef} style={style} />;
 };
