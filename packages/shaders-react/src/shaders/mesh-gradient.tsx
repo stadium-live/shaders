@@ -17,11 +17,11 @@ export const defaultPreset: MeshGradientPreset = {
   name: 'Default',
   params: {
     // Note: Keep default colors in HSLA format so that our Leva controls show a transparency channel (rgba and hex8 do not work)
-    color1: 'hsla(260, 28%, 46%, 1)',
-    color2: 'hsla(262, 24%, 63%, 1)',
-    color3: 'hsla(48, 90%, 60%, 1)',
-    color4: 'hsla(352, 62%, 72%, 1)',
-    speed: 0.1,
+    color1: 'hsla(259, 29%, 73%, 1)',
+    color2: 'hsla(263, 57%, 39%, 1)',
+    color3: 'hsla(48, 73%, 84%,1)',
+    color4: 'hsla(295, 32%, 70%, 1)',
+    speed: 0.15,
   },
 } as const;
 

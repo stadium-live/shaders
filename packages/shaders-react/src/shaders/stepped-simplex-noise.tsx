@@ -49,7 +49,40 @@ const magmaPreset: SteppedSimplexNoisePreset = {
   },
 };
 
-export const steppedSimplexNoisePresets: SteppedSimplexNoisePreset[] = [defaultPreset, magmaPreset];
+const bloodCellPreset: SteppedSimplexNoisePreset = {
+  name: 'Blood cell',
+  params: {
+    color1: '#30132f',
+    color2: '#540332',
+    color3: '#720d32',
+    color4: '#720d32',
+    color5: '#f4807c',
+    scale: 0.72,
+    speed: 0.22,
+    stepsNumber: 29,
+  },
+};
+
+const firstContactPreset: SteppedSimplexNoisePreset = {
+  name: 'First contact',
+  params: {
+    color1: '#e5bde5',
+    color2: '#150727',
+    color3: '#512a5a',
+    color4: '#deb0b0',
+    color5: '#ffebeb',
+    scale: 0.62,
+    speed: -0.1,
+    stepsNumber: 40,
+  },
+};
+
+export const steppedSimplexNoisePresets: SteppedSimplexNoisePreset[] = [
+  defaultPreset,
+  magmaPreset,
+  bloodCellPreset,
+  firstContactPreset,
+];
 
 export const SteppedSimplexNoise = (props: SteppedSimplexNoiseProps): JSX.Element => {
   const uniforms: SteppedSimplexNoiseUniforms = useMemo(() => {
