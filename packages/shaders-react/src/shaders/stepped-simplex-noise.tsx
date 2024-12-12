@@ -23,13 +23,14 @@ type SteppedSimplexNoisePreset = { name: string; params: Required<SteppedSimplex
 export const defaultPreset: SteppedSimplexNoisePreset = {
   name: 'Default',
   params: {
+    // Note: Keep default colors in HSLA format so that our Leva controls show a transparency channel (rgba and hex8 do not work)
     color1: 'hsla(208.42, 24.68%, 45.29%, 1)',
     color2: 'hsla(94.07, 38.39%, 58.63%, 1)',
     color3: 'hsla(359.02, 93.88%, 61.57%, 1)',
     color4: 'hsla(42.35, 93.41%, 64.31%, 1)',
     color5: 'hsla(0, 0%, 100%, 1)',
     scale: 0.5,
-    speed: 0.6,
+    speed: 0.15,
     stepsNumber: 13,
   },
 } as const;

@@ -16,6 +16,7 @@ type MeshGradientPreset = { name: string; params: Required<MeshGradientParams> }
 export const defaultPreset: MeshGradientPreset = {
   name: 'Default',
   params: {
+    // Note: Keep default colors in HSLA format so that our Leva controls show a transparency channel (rgba and hex8 do not work)
     color1: 'hsla(260, 28%, 46%, 1)',
     color2: 'hsla(262, 24%, 63%, 1)',
     color3: 'hsla(48, 90%, 60%, 1)',

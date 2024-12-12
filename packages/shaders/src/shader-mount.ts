@@ -11,7 +11,7 @@ export class ShaderMount {
   private lastFrameTime = 0;
   /** Total time that we have played any animation, passed as a uniform to the shader for time-based VFX */
   private totalAnimationTime = 0;
-  /** The current speed that we progress through animation time (multiplies by delta time every update) */
+  /** The current speed that we progress through animation time (multiplies by delta time every update). Allows negatives to play in reverse. If set to 0, rAF will stop entirely so static shaders have no recurring performance costs */
   private speed = 1;
   /** Uniforms that are provided by the user for the specific shader being mounted (not including uniforms that this Mount adds, like time and resolution) */
   private providedUniforms: Record<string, number | number[]>;
@@ -103,7 +103,7 @@ export class ShaderMount {
     const dt = currentTime - this.lastFrameTime;
     this.lastFrameTime = currentTime;
     // Increase the total animation time by dt * animationSpeed
-    if (this.speed > 0) {
+    if (this.speed !== 0) {
       this.totalAnimationTime += dt * this.speed;
     }
 
@@ -122,7 +122,7 @@ export class ShaderMount {
     this.gl.drawArrays(this.gl.TRIANGLES, 0, 6);
 
     // Loop if we're animating
-    if (this.speed > 0) {
+    if (this.speed !== 0) {
       this.requestRender();
     } else {
       this.rafId = null;
@@ -177,7 +177,7 @@ export class ShaderMount {
     // Set the new animation speed
     this.speed = newSpeed;
 
-    if (this.rafId === null && newSpeed > 0) {
+    if (this.rafId === null && newSpeed !== 0) {
       // Moving from 0 to animating, kick off a new rAF loop
       this.lastFrameTime = performance.now();
       this.rafId = requestAnimationFrame(this.render);

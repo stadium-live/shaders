@@ -16,6 +16,7 @@ type GrainCloudsPreset = { name: string; params: Required<GrainCloudsParams> };
 export const defaultPreset: GrainCloudsPreset = {
   name: 'Default',
   params: {
+    // Note: Keep default colors in HSLA format so that our Leva controls show a transparency channel (rgba and hex8 do not work)
     color1: 'hsla(0, 0%, 0%, 1)',
     color2: 'hsla(0, 0%, 100%, 1)',
     scale: 1,
