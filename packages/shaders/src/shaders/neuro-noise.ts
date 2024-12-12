@@ -57,14 +57,16 @@ void main() {
   uv += .5;
 
   float t = u_time;
-  vec3 color = vec3(0.);
 
   float noise = neuro_shape(uv, t);
 
   noise = u_brightness * pow(noise, 3.);
   noise += pow(noise, 12.);
   noise = max(.0, noise - .5);
+  
+  vec3 color = mix(u_colorBack.rgb * u_colorBack.a, u_colorFront.rgb * u_colorFront.a, noise);
+  float opacity = mix(u_colorBack.a, u_colorFront.a, noise);
 
-  gl_FragColor = mix(u_colorBack, u_colorFront, noise);
+  gl_FragColor = vec4(color, opacity);
 }
 `;

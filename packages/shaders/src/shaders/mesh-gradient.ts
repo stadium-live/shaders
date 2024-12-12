@@ -82,11 +82,16 @@ void main() {
    	tuv.y += sin(tuv.x*frequency*1.5+speed)/(amplitude*.5);
 
 
-    // draw the image
-    vec4 layer1 = mix(u_color1, u_color2, S(-.3, .2, (tuv*Rot(radians(-5.))).x));
-    vec4 layer2 = mix(u_color3, u_color4, S(-.3, .2, (tuv*Rot(radians(-5.))).x));
+    float proportion_1 = S(-.3, .2, (tuv*Rot(radians(-5.))).x);
+    vec3 layer1_color = mix(u_color1.rgb * u_color1.a, u_color2.rgb * u_color2.a, proportion_1);
+    float layer1_opacity = mix(u_color1.a, u_color2.a, proportion_1);
+    vec3 layer2_color = mix(u_color3.rgb * u_color3.a, u_color4.rgb * u_color4.a, proportion_1);
+    float layer2_opacity = mix(u_color3.a, u_color4.a, proportion_1);
 
-    vec4 finalComp = mix(layer1, layer2, S(.5, -.3, tuv.y));
-    gl_FragColor = finalComp;
+    float proportion_2 = S(.5, -.3, tuv.y);
+    vec3 color = mix(layer1_color, layer2_color, proportion_2);
+    float opacity = mix(layer1_opacity, layer2_opacity, proportion_2);
+    
+    gl_FragColor = vec4(color, opacity);
 }
 `;

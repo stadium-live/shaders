@@ -93,11 +93,14 @@ void main() {
   float noise = .5 + .5 * get_noise(uv, t);
   noise = floor(noise * u_steps_number) / u_steps_number;
 
-  vec4 col = u_color1;
+  vec3 color = u_color1.rgb * u_color1.a;
+  float opacity = u_color1.a;
   for (int i = 0; i < 5; i++) {
-      vec4 next_col = getColor(i + 1);
-      col = mix(col, next_col, smoothstep((float(i) + .5) / 5., (float(i) + 2.) / 5., noise));
+      vec4 next_c = getColor(i + 1);
+      float proportion = smoothstep((float(i) + .5) / 5., (float(i) + 2.) / 5., noise);
+      color = mix(color, next_c.rgb * next_c.a, proportion);
+      opacity = mix(opacity, next_c.a, proportion);
   }
-  gl_FragColor = col;
+  gl_FragColor = vec4(color, opacity);
 }
 `;

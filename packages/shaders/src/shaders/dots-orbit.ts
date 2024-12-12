@@ -86,12 +86,21 @@ void main() {
   float shape = 1. - smoothstep(radius, radius + radius_smoother, voronoi[0]);
 
   float color_randomizer = voronoi[1];
-  vec4 color =
-    u_color1 * step(0.0, color_randomizer) * step(color_randomizer, 0.25) +
-    u_color2 * step(0.25, color_randomizer) * step(color_randomizer, 0.5) +
-    u_color3 * step(0.5, color_randomizer) * step(color_randomizer, 0.75) +
-    u_color4 * step(0.75, color_randomizer) * step(color_randomizer, 1.0);
+  
+  float opacity =
+    u_color1.a * step(0.0, color_randomizer) * step(color_randomizer, 0.25) +
+    u_color2.a * step(0.25, color_randomizer) * step(color_randomizer, 0.5) +
+    u_color3.a * step(0.5, color_randomizer) * step(color_randomizer, 0.75) +
+    u_color4.a * step(0.75, color_randomizer) * step(color_randomizer, 1.0);
+    
+    opacity *= shape;
+    
+  vec3 color =
+    u_color1.rgb * step(0.0, color_randomizer) * step(color_randomizer, 0.25) +
+    u_color2.rgb * step(0.25, color_randomizer) * step(color_randomizer, 0.5) +
+    u_color3.rgb * step(0.5, color_randomizer) * step(color_randomizer, 0.75) +
+    u_color4.rgb * step(0.75, color_randomizer) * step(color_randomizer, 1.0);
 
-  gl_FragColor = color * shape;
+  gl_FragColor = vec4(color * opacity, opacity);
 }
 `;

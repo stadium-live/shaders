@@ -81,12 +81,13 @@ export const grainCloudsFragmentShader = `
     n = n * 0.5 + 0.5;
 
     // Color interpolation
-    vec4 color = mix(u_color1, u_color2, n);
+    vec3 color = mix(u_color1.rgb, u_color2.rgb, n);
+    float opacity = mix(u_color1.a, u_color2.a, n);
 
     // Add grain
     float grain = fract(sin(dot(st * 1000.0, vec2(12.9898, 78.233))) * 43758.5453);
-    color += (grain - 0.5) * u_grainAmount;
+    color.rgb += (grain - 0.5) * u_grainAmount;
 
-    gl_FragColor = color;
+    gl_FragColor = vec4(color * opacity, opacity);
   }
 `;
