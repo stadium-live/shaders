@@ -36,7 +36,7 @@ export class ShaderMount {
     // Base our starting animation time on the provided seed value
     this.totalAnimationTime = seed;
 
-    const gl = canvas.getContext('webgl', webGlContextAttributes);
+    const gl = canvas.getContext('webgl2', webGlContextAttributes);
     if (!gl) {
       throw new Error('WebGL not supported');
     }
@@ -248,11 +248,12 @@ export class ShaderMount {
 }
 
 /** Vertex shader for the shader mount */
-const vertexShaderSource = `
-  attribute vec4 a_position;
-  void main() {
-    gl_Position = a_position;
-  }
+const vertexShaderSource = `#version 300 es
+layout(location = 0) in vec4 a_position;
+
+void main() {
+  gl_Position = a_position;
+}
 `;
 
 function createShader(gl: WebGLRenderingContext, type: number, source: string): WebGLShader | null {
