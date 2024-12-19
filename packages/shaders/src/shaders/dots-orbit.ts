@@ -62,7 +62,7 @@ vec3 get_voronoi_shape(vec2 _uv, float time) {
     for (int x = -1; x <= 1; x++) {
       vec2 tile_offset = vec2(float(x), float(y));
       vec2 rand = random2(i_uv + tile_offset);
-      vec2 cell_center = .5 + u_spreading * sin(time + PI * 2. * rand);
+      vec2 cell_center = .50000001 + u_spreading * sin(time + PI * 2. * rand);
       float dist = length(tile_offset + cell_center - f_uv);
       if (dist < min_dist) {
         min_dist = dist;
@@ -84,11 +84,12 @@ void main() {
 
   float t = u_time;
 
-  vec3 voronoi = get_voronoi_shape(uv, t);
+  vec3 voronoi = get_voronoi_shape(uv, t) + 1e-4;
+  
   float radius = u_dotSize - u_dotSizeRange * voronoi[2];
-
-  float radius_smoother = .001 + .001 * (u_scale - 1.);
-  float shape = 1. - smoothstep(radius, radius + radius_smoother, voronoi[0]);
+  float dist = voronoi[0];
+  float edge_width = fwidth(dist);
+  float shape = smoothstep(radius + edge_width, radius - edge_width, dist);
 
   float color_randomizer = voronoi[1];
   
