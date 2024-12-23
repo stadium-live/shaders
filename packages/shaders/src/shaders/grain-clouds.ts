@@ -58,6 +58,25 @@ export const grainCloudsFragmentShader = `#version 300 es
     g.yz = a0.yz * x12.xz + h.yz * x12.yw;
     return 130.0 * dot(m, g);
   }
+  
+    float rand(vec2 n) {
+        return fract(cos(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);
+    }
+    float noise(vec2 n) {
+        const vec2 d = vec2(0.0, 1.0);
+        vec2 b = floor(n), f = smoothstep(vec2(0.0), vec2(1.0), fract(n));
+        return mix(mix(rand(b), rand(b + d.yx), f.x), mix(rand(b + d.xy), rand(b + d.yy), f.x), f.y);
+    }
+    float fbm(vec2 n) {
+        float total = 0.0, amplitude = .2;
+        for (int i = 0; i < 6; i++) {
+            total += noise(n) * amplitude;
+            n += n;
+            amplitude *= 0.6;
+        }
+        return total;
+    }
+    
 
   void main() {
     vec2 uv = gl_FragCoord.xy / u_resolution.xy;
@@ -78,7 +97,7 @@ export const grainCloudsFragmentShader = `#version 300 es
     float opacity = mix(u_color1.a, u_color2.a, n);
 
     // Add grain
-    float grain = fract(sin(dot(uv * 1000.0, vec2(12.9898, 78.233))) * 43758.5453);
+    float grain = fbm(uv * 1000.);
     color.rgb += (grain - 0.5) * u_grainAmount;
 
     fragColor = vec4(color * opacity, opacity);
