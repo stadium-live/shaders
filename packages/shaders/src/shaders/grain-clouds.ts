@@ -19,6 +19,7 @@ export type GrainCloudsUniforms = {
 export const grainCloudsFragmentShader = `#version 300 es
   precision highp float;
   uniform vec2 u_resolution;
+  uniform float u_pxRatio;
   uniform float u_time;
 
   uniform vec4 u_color1;
@@ -59,27 +60,17 @@ export const grainCloudsFragmentShader = `#version 300 es
   }
 
   void main() {
-    vec2 st = gl_FragCoord.xy / u_resolution.xy;
-
-    // Calculate the aspect ratio of the shader
-    float shaderAspect = u_resolution.x / u_resolution.y;
-
-    // Define the aspect ratio of your content (e.g., 1.0 for square)
-    float contentAspect = 1.0;
-
-    // Adjust st to maintain content aspect ratio
-    if (shaderAspect > contentAspect) {
-      float scale = shaderAspect / contentAspect;
-      st.x = (st.x - 0.5) * scale + 0.5;
-    } else {
-      float scale = contentAspect / shaderAspect;
-      st.y = (st.y - 0.5) * scale + 0.5;
-    }
+    vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+  
+    uv -= .5;
+    uv *= (.001 * u_scale * u_resolution);
+    uv /= u_pxRatio;
+    uv += .5;
 
     // Create blobby texture
-    float n = snoise(st * u_scale + u_time);
-    n += 0.5 * snoise(st * u_scale * 2.0 - u_time * 0.5);
-    n += 0.25 * snoise(st * u_scale * 4.0 + u_time * 0.25);
+    float n = snoise(uv + u_time);
+    n += 0.5 * snoise(uv * 2.0 - u_time * 0.5);
+    n += 0.25 * snoise(uv * 4.0 + u_time * 0.25);
     n = n * 0.5 + 0.5;
 
     // Color interpolation
@@ -87,7 +78,7 @@ export const grainCloudsFragmentShader = `#version 300 es
     float opacity = mix(u_color1.a, u_color2.a, n);
 
     // Add grain
-    float grain = fract(sin(dot(st * 1000.0, vec2(12.9898, 78.233))) * 43758.5453);
+    float grain = fract(sin(dot(uv * 1000.0, vec2(12.9898, 78.233))) * 43758.5453);
     color.rgb += (grain - 0.5) * u_grainAmount;
 
     fragColor = vec4(color * opacity, opacity);
