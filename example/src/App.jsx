@@ -25,6 +25,9 @@ const App = () => {
               <Link href="/mesh-gradient">Mesh Gradient</Link>
             </li>
             <li>
+              <Link href="/metaballs">Metaballs</Link>
+            </li>
+            <li>
               <Link href="/neuro-noise">Neuro Noise</Link>
             </li>
             <li>
@@ -32,9 +35,6 @@ const App = () => {
             </li>
             <li>
               <Link href="/stepped-simplex-noise">Stepped Simplex Noise</Link>
-            </li>
-            <li>
-              <Link href="/metaballs">Metaballs</Link>
             </li>
           </ul>
         </Route>

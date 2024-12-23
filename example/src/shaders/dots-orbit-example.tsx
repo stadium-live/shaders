@@ -1,7 +1,7 @@
 import { DotsOrbit, type DotsOrbitParams, dotsOrbitPresets } from '@paper-design/shaders-react';
 import { useControls, button, folder } from 'leva';
 import { useEffect } from 'react';
-import { useResetLevaParams } from '../example-helpers/use-reset-leva-params';
+import { setParamsSafe, useResetLevaParams } from '../example-helpers/use-reset-leva-params';
 
 /**
  * You can copy/paste this example to use DotsOrbit in your app
@@ -32,7 +32,7 @@ const defaults = dotsOrbitPresets[0].params;
 export const DotsOrbitWithControls = () => {
   const [params, setParams] = useControls(() => {
     const presets: DotsOrbitParams = Object.fromEntries(
-      dotsOrbitPresets.map((preset) => [preset.name, button(() => setParams(preset.params))])
+      dotsOrbitPresets.map((preset) => [preset.name, button(() => setParamsSafe(params, setParams, preset.params))])
     );
     return {
       Parameters: folder(
@@ -55,7 +55,7 @@ export const DotsOrbitWithControls = () => {
 
   // Reset to defaults on mount, so that Leva doesn't show values from other
   // shaders when navigating (if two shaders have a color1 param for example)
-  // useResetLevaParams(params, setParams, defaults);
+  useResetLevaParams(params, setParams, defaults);
 
   return <DotsOrbit {...params} style={{ position: 'fixed', width: '100%', height: '100%' }} />;
 };

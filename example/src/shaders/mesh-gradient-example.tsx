@@ -1,7 +1,6 @@
 import { MeshGradient, type MeshGradientParams, meshGradientPresets } from '@paper-design/shaders-react';
 import { useControls, button, folder } from 'leva';
-import { useEffect } from 'react';
-import { useResetLevaParams } from '../example-helpers/use-reset-leva-params';
+import { useResetLevaParams, setParamsSafe } from '../example-helpers/use-reset-leva-params';
 
 /**
  * You can copy/paste this example to use MeshGradient in your app
@@ -28,7 +27,7 @@ const defaults = meshGradientPresets[0].params;
 export const MeshGradientWithControls = () => {
   const [params, setParams] = useControls(() => {
     const presets: MeshGradientParams = Object.fromEntries(
-      meshGradientPresets.map((preset) => [preset.name, button(() => setParams(preset.params))])
+      meshGradientPresets.map((preset) => [preset.name, button(() => setParamsSafe(params, setParams, preset.params))])
     );
 
     return {
@@ -48,7 +47,7 @@ export const MeshGradientWithControls = () => {
 
   // Reset to defaults on mount, so that Leva doesn't show values from other
   // shaders when navigating (if two shaders have a color1 param for example)
-  // useResetLevaParams(params, setParams, defaults);
+  useResetLevaParams(params, setParams, defaults);
 
   return <MeshGradient {...params} style={{ position: 'fixed', width: '100%', height: '100%' }} />;
 };

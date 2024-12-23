@@ -19,7 +19,7 @@ export type GrainCloudsUniforms = {
 export const grainCloudsFragmentShader = `#version 300 es
   precision highp float;
   uniform vec2 u_resolution;
-  uniform float u_pxRatio;
+  uniform float u_pixelRatio;
   uniform float u_time;
 
   uniform vec4 u_color1;
@@ -58,7 +58,7 @@ export const grainCloudsFragmentShader = `#version 300 es
     g.yz = a0.yz * x12.xz + h.yz * x12.yw;
     return 130.0 * dot(m, g);
   }
-  
+
     float rand(vec2 n) {
         return fract(cos(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);
     }
@@ -76,14 +76,14 @@ export const grainCloudsFragmentShader = `#version 300 es
         }
         return total;
     }
-    
+
 
   void main() {
     vec2 uv = gl_FragCoord.xy / u_resolution.xy;
-  
+
     uv -= .5;
     uv *= (.001 * u_scale * u_resolution);
-    uv /= u_pxRatio;
+    uv /= u_pixelRatio;
     uv += .5;
 
     // Create blobby texture
