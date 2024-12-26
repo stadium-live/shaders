@@ -48,7 +48,7 @@ import { MeshGradient } from '@paper-design/shaders-react';
 
 - Vanilla JS (@paper-design/shaders)
 - React JS (@paper-design/shaders-react)
-- Vue and others: accepting community PRs
+- Vue and others: intent to accept community PRs in the future
 
 ### Examples:
 
