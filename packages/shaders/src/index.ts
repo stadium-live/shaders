@@ -40,5 +40,9 @@ export { perlinNoiseFragmentShader, type PerlinNoiseUniforms } from './shaders/p
 /** Voronoi diagram: classic + rounded edges */
 export { voronoiFragmentShader, type VoronoiUniforms } from './shaders/voronoi';
 
+// ----- Waves ----- //
+/** Waves pattern */
+export { wavesFragmentShader, type WavesUniforms } from './shaders/waves';
+
 // ----- Uniform conversion utils ----- //
 export { getShaderColorFromString } from './get-shader-color-from-string';
