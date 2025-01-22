@@ -7,7 +7,6 @@ import { usePresetHighlight } from '@/helpers/use-preset-highlight';
 import Link from 'next/link';
 import { BackButton } from '@/components/back-button';
 
-
 /**
  * You can copy/paste this example to use GrainClouds in your app
  */
@@ -19,7 +18,7 @@ const GrainCloudsExample = () => {
       seed={0}
       color1="#000000"
       color2="#ffffff"
-      grainAmount={.5}
+      grainAmount={0.5}
       style={{ position: 'fixed', width: '100%', height: '100%' }}
     />
   );
