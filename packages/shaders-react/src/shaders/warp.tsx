@@ -154,7 +154,7 @@ export const presetAbyss: WarpPreset = {
 export const presetInk: WarpPreset = {
   name: 'Live Ink',
   params: {
-    scale: 1,
+    scale: 0.7,
     rotation: 1.5,
     speed: 0.25,
     seed: 0,
