@@ -86,13 +86,13 @@ float noise(vec2 st) {
   return mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
 }
 
-vec4 blend_colors(vec4 c1, vec4 c2, vec4 c3, float mixer, float edgesWidth) {
+vec4 blend_colors(vec4 c1, vec4 c2, vec4 c3, float mixer, float edgesWidth, float edge_blur) {
     vec3 color1 = c1.rgb * c1.a;
     vec3 color2 = c2.rgb * c2.a;
     vec3 color3 = c3.rgb * c3.a;
             
-    float r1 = smoothstep(.0 + .35 * edgesWidth, .7 - .35 * edgesWidth, mixer);
-    float r2 = smoothstep(.3 + .35 * edgesWidth, 1. - .35 * edgesWidth, mixer);
+    float r1 = smoothstep(.0 + .35 * edgesWidth, .7 - .35 * edgesWidth + .5 * edge_blur, mixer);
+    float r2 = smoothstep(.3 + .35 * edgesWidth, 1. - .35 * edgesWidth + edge_blur, mixer);
 
     vec3 blended_color_2 = mix(color1, color2, r1);
     float blended_opacity_2 = mix(c1.a, c2.a, r1);
@@ -151,7 +151,7 @@ void main() {
       mixer = shape;
     } 
 
-    vec4 color_mix = blend_colors(u_color1, u_color2, u_color3, mixer, 1. - clamp(u_softness, 0., 1.));
+    vec4 color_mix = blend_colors(u_color1, u_color2, u_color3, mixer, 1. - clamp(u_softness, 0., 1.), .01 + .01 * u_scale);
     
     fragColor = vec4(color_mix.rgb, color_mix.a);
 }
