@@ -52,5 +52,9 @@ export { warpFragmentShader, PatternShapes, type PatternShape, type WarpUniforms
 /** Radial shape made of randomized stripes */
 export { godRaysFragmentShader, type GodRaysUniforms } from './shaders/god-rays';
 
+// ----- Spiral Shape ----- //
+/** Single-color spiral shape */
+export { spiralFragmentShader, type SpiralUniforms } from './shaders/spiral';
+
 // ----- Uniform conversion utils ----- //
 export { getShaderColorFromString } from './get-shader-color-from-string';

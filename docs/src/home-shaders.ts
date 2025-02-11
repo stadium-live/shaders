@@ -33,6 +33,8 @@ import {
   warpPresets,
   GodRays,
   godRaysPresets,
+  Spiral,
+  spiralPresets,
 } from '@paper-design/shaders-react';
 import { StaticImageData } from 'next/image';
 
@@ -129,5 +131,11 @@ export const homeShaders = [
     url: '/god-rays',
     ShaderComponent: GodRays,
     shaderConfig: godRaysPresets[0].params,
+  },
+  {
+    name: 'spiral',
+    url: '/spiral',
+    ShaderComponent: Spiral,
+    shaderConfig: spiralPresets[0].params,
   },
 ] satisfies HomeShaderConfig[];

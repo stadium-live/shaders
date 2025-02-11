@@ -81,5 +81,11 @@ export { type GodRaysProps } from './shaders/god-rays';
 export { type GodRaysParams } from './shaders/god-rays';
 export { type GodRaysUniforms } from '@paper-design/shaders';
 
+// Single-colored spiral shape
+export { Spiral, spiralPresets } from './shaders/spiral';
+export { type SpiralProps } from './shaders/spiral';
+export { type SpiralParams } from './shaders/spiral';
+export { type SpiralUniforms } from '@paper-design/shaders';
+
 // ----- Uniform conversion utils ----- //
 export { getShaderColorFromString } from '@paper-design/shaders';
