@@ -1,6 +1,5 @@
 import meshGradientImg from '../public/shaders/mesh-gradient.webp';
 import simplexNoiseImg from '../public/shaders/simplex-noise.webp';
-import grainCloudsImg from '../public/shaders/grain-clouds.webp';
 import neuroNoiseImg from '../public/shaders/neuro-noise.webp';
 import perlinNoiseImg from '../public/shaders/perlin-noise.webp';
 import dotsGridImg from '../public/shaders/dots-grid.webp';
@@ -17,8 +16,6 @@ import {
   DotsGrid,
   dotsOrbitPresets,
   DotsOrbit,
-  GrainClouds,
-  grainCloudsPresets,
   MeshGradient,
   meshGradientPresets,
   Metaballs,
@@ -58,13 +55,6 @@ export const homeShaders = [
     url: '/stepped-simplex-noise',
     ShaderComponent: SteppedSimplexNoise,
     shaderConfig: { ...steppedSimplexNoisePresets[0].params, scale: 0.5, speed: 0.3 },
-  },
-  {
-    name: 'grain clouds',
-    image: grainCloudsImg,
-    url: '/grain-clouds',
-    ShaderComponent: GrainClouds,
-    shaderConfig: { ...grainCloudsPresets[1].params, scale: 0.15, speed: 0.2 },
   },
   {
     name: 'mesh gradient',
