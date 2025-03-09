@@ -39,6 +39,7 @@ import {
   spiralPresets,
 } from '@paper-design/shaders-react';
 import { StaticImageData } from 'next/image';
+import TextureTest from './app/texture-test/page';
 
 type HomeShaderConfig = {
   name: string;
@@ -49,6 +50,12 @@ type HomeShaderConfig = {
 };
 
 export const homeShaders = [
+  {
+    name: 'texture test',
+    url: '/texture-test',
+    ShaderComponent: TextureTest,
+    shaderConfig: {},
+  },
   {
     name: 'simplex noise',
     image: simplexNoiseImg,
