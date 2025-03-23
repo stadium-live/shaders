@@ -1,8 +1,17 @@
 /** Uniform types that we support to be auto-mapped into the fragment shader */
 export type ShaderMountUniforms = Record<string, number | number[] | HTMLImageElement>;
 
+/** A canvas element that has a ShaderMount available on it */
+export interface PaperShaderCanvasElement extends HTMLCanvasElement {
+  paperShaderMount: ShaderMount | undefined;
+}
+/** Check if a canvas element is a ShaderCanvas */
+export function isPaperShaderCanvas(canvas: HTMLCanvasElement): canvas is PaperShaderCanvasElement {
+  return 'paperShaderMount' in canvas;
+}
+
 export class ShaderMount {
-  private canvas: HTMLCanvasElement;
+  private canvas: PaperShaderCanvasElement;
   private gl: WebGLRenderingContext;
   private program: WebGLProgram | null = null;
   private uniformLocations: Record<string, WebGLUniformLocation | null> = {};
@@ -35,7 +44,7 @@ export class ShaderMount {
     /** Pass a frame to offset the starting u_time value and give deterministic results*/
     frame = 0
   ) {
-    this.canvas = canvas;
+    this.canvas = canvas as PaperShaderCanvasElement;
     this.fragmentShader = fragmentShader;
     this.providedUniforms = uniforms;
     // Base our starting animation time on the provided frame value
@@ -61,6 +70,9 @@ export class ShaderMount {
 
     // Mark canvas as paper shader mount
     this.canvas.setAttribute('data-paper-shaders', 'true');
+
+    // Add the shaderMount instance to the canvas element to make it easily accessible
+    this.canvas.paperShaderMount = this;
   }
 
   private initProgram = () => {
@@ -366,6 +378,9 @@ export class ShaderMount {
     }
 
     this.uniformLocations = {};
+
+    // Remove the shader mount from the canvas element to avoid any GC issues
+    this.canvas.paperShaderMount = undefined;
   };
 }
 
