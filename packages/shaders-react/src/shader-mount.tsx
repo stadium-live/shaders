@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, forwardRef } from 'react';
+import React, { useEffect, useRef, forwardRef, useState } from 'react';
 import { ShaderMount as ShaderMountVanilla, type ShaderMountUniforms } from '@paper-design/shaders';
 import { useMergeRefs } from './use-merge-refs';
 
@@ -93,13 +93,14 @@ export const ShaderMount: React.FC<ShaderMountProps> = forwardRef<HTMLDivElement
     },
     forwardedRef
   ) {
+    const [isInitialized, setIsInitialized] = useState(false);
     const divRef = useRef<HTMLDivElement>(null);
     const shaderMountRef: React.RefObject<ShaderMountVanilla | null> = useRef<ShaderMountVanilla>(null);
 
+    // Initialize the ShaderMountVanilla
     useEffect(() => {
       const initShader = async () => {
         const processedUniforms = await processUniforms(uniforms);
-
         if (divRef.current && !shaderMountRef.current) {
           shaderMountRef.current = new ShaderMountVanilla(
             divRef.current,
@@ -113,6 +114,8 @@ export const ShaderMount: React.FC<ShaderMountProps> = forwardRef<HTMLDivElement
           if (externalShaderMountRef) {
             externalShaderMountRef.current = shaderMountRef.current;
           }
+
+          setIsInitialized(true);
         }
       };
 
@@ -124,6 +127,7 @@ export const ShaderMount: React.FC<ShaderMountProps> = forwardRef<HTMLDivElement
       };
     }, [fragmentShader, webGlContextAttributes]);
 
+    // Uniforms
     useEffect(() => {
       const updateUniforms = async () => {
         const processedUniforms = await processUniforms(uniforms);
@@ -131,15 +135,17 @@ export const ShaderMount: React.FC<ShaderMountProps> = forwardRef<HTMLDivElement
       };
 
       updateUniforms();
-    }, [uniforms]);
+    }, [uniforms, isInitialized]);
 
+    // Speed
     useEffect(() => {
       shaderMountRef.current?.setSpeed(speed);
-    }, [speed]);
+    }, [speed, isInitialized]);
 
+    // Frame
     useEffect(() => {
       shaderMountRef.current?.setFrame(frame);
-    }, [frame]);
+    }, [frame, isInitialized]);
 
     return <div ref={useMergeRefs([divRef, forwardedRef])} {...divProps} />;
   }
