@@ -1,8 +1,8 @@
 /** The core Shader Mounting class. Pass it a canvas element and a fragment shader to get started. */
 export {
   ShaderMount,
-  isPaperShaderCanvas,
-  type PaperShaderCanvasElement,
+  isPaperShaderDivWrapper,
+  type PaperShaderDivWrapperElement,
   type ShaderMountUniforms,
 } from './shader-mount';
 

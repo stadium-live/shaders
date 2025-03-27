@@ -2,17 +2,17 @@
 export type ShaderMountUniforms = Record<string, number | number[] | HTMLImageElement>;
 
 /** A canvas element that has a ShaderMount available on it */
-export interface PaperShaderCanvasElement extends HTMLCanvasElement {
+export interface PaperShaderDivWrapperElement extends HTMLDivElement {
   paperShaderMount: ShaderMount | undefined;
 }
 /** Check if a canvas element is a ShaderCanvas */
-export function isPaperShaderCanvas(canvas: HTMLCanvasElement): canvas is PaperShaderCanvasElement {
-  return 'paperShaderMount' in canvas;
+export function isPaperShaderDivWrapper(div: HTMLDivElement): div is PaperShaderDivWrapperElement {
+  return 'paperShaderMount' in div;
 }
 
 export class ShaderMount {
-  public mountToDiv: HTMLDivElement;
-  public canvas: PaperShaderCanvasElement;
+  public mountToDiv: PaperShaderDivWrapperElement;
+  public canvas: HTMLCanvasElement;
   private gl: WebGLRenderingContext;
   private program: WebGLProgram | null = null;
   private uniformLocations: Record<string, WebGLUniformLocation | null> = {};
@@ -59,8 +59,8 @@ export class ShaderMount {
     canvas.style.zIndex = '-1';
     canvas.style.width = '100%';
     canvas.style.height = '100%';
-    this.canvas = canvas as PaperShaderCanvasElement;
-    this.mountToDiv = mountToDiv;
+    this.canvas = canvas;
+    this.mountToDiv = mountToDiv as PaperShaderDivWrapperElement;
     mountToDiv.appendChild(canvas);
     this.fragmentShader = fragmentShader;
     this.providedUniforms = uniforms;
@@ -89,8 +89,8 @@ export class ShaderMount {
     // Mark canvas as paper shader mount
     this.canvas.setAttribute('data-paper-shaders', 'true');
 
-    // Add the shaderMount instance to the canvas element to make it easily accessible
-    this.canvas.paperShaderMount = this;
+    // Add the shaderMount instance to the div mount element to make it easily accessible
+    this.mountToDiv.paperShaderMount = this;
   }
 
   private initProgram = () => {
@@ -390,8 +390,8 @@ export class ShaderMount {
 
     this.uniformLocations = {};
 
-    // Remove the shader mount from the canvas element to avoid any GC issues
-    this.canvas.paperShaderMount = undefined;
+    // Remove the shader mount from the div wrapper element to avoid any GC issues
+    this.mountToDiv.paperShaderMount = undefined;
   };
 }
 
