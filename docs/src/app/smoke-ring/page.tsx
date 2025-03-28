@@ -14,8 +14,9 @@ import { cleanUpLevaParams } from '@/helpers/clean-up-leva-params';
 const SmokeRingExample = () => {
   return (
     <SmokeRing
+      colorBack="#000000"
       colorInner="#ffffff"
-      colorOuter="#47a0ff"
+      colorOuter="#4f566a"
       scale={1}
       noiseScale={1.4}
       thickness={0.33}
@@ -34,7 +35,6 @@ const defaults = {
   ...firstPresetParams,
   speed: Math.abs(firstPresetParams.speed),
   reverse: firstPresetParams.speed < 0,
-  style: { background: 'hsla(0, 0%, 0%, 0)' },
 };
 
 const SmokeRingWithControls = () => {
@@ -42,6 +42,7 @@ const SmokeRingWithControls = () => {
     return {
       Parameters: folder(
         {
+          colorBack: { value: defaults.colorBack, order: 100 },
           colorInner: { value: defaults.colorInner, order: 101 },
           colorOuter: { value: defaults.colorOuter, order: 102 },
           scale: { value: defaults.scale, min: 0.5, max: 1.5, order: 200 },
@@ -55,14 +56,6 @@ const SmokeRingWithControls = () => {
     };
   });
 
-  const [style, setStyle] = useControls(() => {
-    return {
-      Parameters: folder({
-        background: { value: 'hsla(0, 0%, 0%, 0)', order: 100 },
-      }),
-    };
-  });
-
   useControls(() => {
     const presets: SmokeRingParams = Object.fromEntries(
       smokeRingPresets.map((preset) => [
@@ -73,7 +66,6 @@ const SmokeRingWithControls = () => {
             speed: Math.abs(preset.params.speed),
             reverse: preset.params.speed < 0,
           });
-          setStyle({ background: String(preset.style?.background || 'hsla(0, 0%, 0%, 0)') });
         }),
       ])
     );
@@ -85,7 +77,6 @@ const SmokeRingWithControls = () => {
   // Reset to defaults on mount, so that Leva doesn't show values from other
   // shaders when navigating (if two shaders have a colorInner param for example)
   useResetLevaParams(params, setParams, defaults);
-  useResetLevaParams(style, setStyle, defaults.style);
   usePresetHighlight(smokeRingPresets, params);
   cleanUpLevaParams(params);
 
@@ -96,7 +87,7 @@ const SmokeRingWithControls = () => {
       <Link href="/">
         <BackButton />
       </Link>
-      <SmokeRing {...shaderParams} style={{ position: 'fixed', width: '100svw', height: '100svh', ...style }} />
+      <SmokeRing className="fixed size-full" {...shaderParams} />
     </>
   );
 };

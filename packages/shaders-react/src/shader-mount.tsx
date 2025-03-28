@@ -1,15 +1,16 @@
-import React, { useEffect, useRef, forwardRef, useState } from 'react';
+import React, { useEffect, useRef, forwardRef, useState, useId } from 'react';
 import { ShaderMount as ShaderMountVanilla, type ShaderMountUniforms } from '@paper-design/shaders';
 import { useMergeRefs } from './use-merge-refs';
 
 /** The React ShaderMount can also accept strings as uniform values, which will assumed to be URLs and loaded as images */
 export type ShaderMountUniformsReact = { [key: string]: ShaderMountUniforms[keyof ShaderMountUniforms] | string };
 
-export interface ShaderMountProps extends React.ComponentProps<'div'> {
+export interface ShaderMountProps extends Omit<React.ComponentProps<'div'>, 'color'> {
   shaderMountRef?: React.RefObject<ShaderMountVanilla | null>;
   fragmentShader: string;
   uniforms?: ShaderMountUniformsReact;
   webGlContextAttributes?: WebGLContextAttributes;
+  maxResolution?: number;
   speed?: number;
   frame?: number;
 }
@@ -89,6 +90,7 @@ export const ShaderMount: React.FC<ShaderMountProps> = forwardRef<HTMLDivElement
       webGlContextAttributes,
       speed = 1,
       frame = 0,
+      maxResolution,
       ...divProps
     },
     forwardedRef
@@ -108,7 +110,8 @@ export const ShaderMount: React.FC<ShaderMountProps> = forwardRef<HTMLDivElement
             processedUniforms,
             webGlContextAttributes,
             speed,
-            frame
+            frame,
+            maxResolution
           );
 
           if (externalShaderMountRef) {
