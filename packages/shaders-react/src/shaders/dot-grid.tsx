@@ -196,7 +196,7 @@ export const DotGrid = ({
   sizeRange,
   opacityRange,
   shape,
-  maxResolution = 6016 * 3384, // Higher max resolution for this shader
+  maxPixelCount = 6016 * 3384, // Higher max resolution for this shader
   ...props
 }: DotGridProps): React.ReactElement => {
   const uniforms: DotGridUniforms = useMemo(() => {
@@ -226,6 +226,6 @@ export const DotGrid = ({
   ]);
 
   return (
-    <ShaderMount {...props} maxResolution={maxResolution} fragmentShader={dotGridFragmentShader} uniforms={uniforms} />
+    <ShaderMount {...props} maxPixelCount={maxPixelCount} fragmentShader={dotGridFragmentShader} uniforms={uniforms} />
   );
 };

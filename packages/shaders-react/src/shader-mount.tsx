@@ -10,7 +10,7 @@ export interface ShaderMountProps extends Omit<React.ComponentProps<'div'>, 'col
   fragmentShader: string;
   uniforms?: ShaderMountUniformsReact;
   webGlContextAttributes?: WebGLContextAttributes;
-  maxResolution?: number;
+  maxPixelCount?: number;
   speed?: number;
   frame?: number;
 }
@@ -90,7 +90,7 @@ export const ShaderMount: React.FC<ShaderMountProps> = forwardRef<HTMLDivElement
       webGlContextAttributes,
       speed = 0,
       frame = 0,
-      maxResolution,
+      maxPixelCount,
       ...divProps
     },
     forwardedRef
@@ -111,7 +111,7 @@ export const ShaderMount: React.FC<ShaderMountProps> = forwardRef<HTMLDivElement
             webGlContextAttributes,
             speed,
             frame,
-            maxResolution
+            maxPixelCount
           );
 
           if (externalShaderMountRef) {

@@ -34,7 +34,7 @@ export class ShaderMount {
   private resolutionChanged = true;
   /** Store textures that are provided by the user */
   private textures: Map<string, WebGLTexture> = new Map();
-  private maxResolution;
+  private maxPixelCount;
   private minPixelRatio;
   private isSafari = isSafari();
 
@@ -55,10 +55,10 @@ export class ShaderMount {
      *
      * May be reduced to improve performance or increased to improve quality on high-resolution screens.
      */
-    maxResolution: number = 1920 * 1080 * 4,
+    maxPixelCount: number = 1920 * 1080 * 4,
     /**
      * The minimum pixel ratio to render at, defaults to 2.
-     * May be reduced to improve performance or increased together with `maxResolution` to improve antialiasing.
+     * May be reduced to improve performance or increased together with `maxPixelCount` to improve antialiasing.
      */
     minPixelRatio = 2
   ) {
@@ -83,7 +83,7 @@ export class ShaderMount {
     this.providedUniforms = uniforms;
     // Base our starting animation time on the provided frame value
     this.totalFrameTime = frame;
-    this.maxResolution = maxResolution;
+    this.maxPixelCount = maxPixelCount;
     this.minPixelRatio = minPixelRatio;
 
     const gl = canvasElement.getContext('webgl2', webGlContextAttributes);
@@ -226,10 +226,10 @@ export class ShaderMount {
     const targetPixelWidth = this.parentWidth * targetRenderScale;
     const targetPixelHeight = this.parentHeight * targetRenderScale;
 
-    // Prevent the total rendered pixel count from exceeding maxResolution
-    const maxResolutionHeadroom = Math.sqrt(this.maxResolution) / Math.sqrt(targetPixelWidth * targetPixelHeight);
+    // Prevent the total rendered pixel count from exceeding maxPixelCount
+    const maxPixelCountHeadroom = Math.sqrt(this.maxPixelCount) / Math.sqrt(targetPixelWidth * targetPixelHeight);
 
-    const newRenderScale = targetRenderScale * Math.min(1, maxResolutionHeadroom);
+    const newRenderScale = targetRenderScale * Math.min(1, maxPixelCountHeadroom);
     const newWidth = Math.round(this.parentWidth * newRenderScale);
     const newHeight = Math.round(this.parentHeight * newRenderScale);
 
