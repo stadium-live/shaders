@@ -6,7 +6,7 @@ import { execSync } from 'child_process';
 async function build(packageDir) {
   const input = `${packageDir}/src/index.ts`;
   const outDir = `${packageDir}/dist`;
-  const tsconfig = `${packageDir}/tsconfig.json`;
+  const tsconfig = `${packageDir}/tsconfig.build.json`;
 
   // ----- Generate type declaration files ----- //
   try {
