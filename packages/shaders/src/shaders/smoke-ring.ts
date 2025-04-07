@@ -96,20 +96,18 @@ float getRingShape(vec2 uv) {
 void main() {
   ${sizingSquareUV}
 
-  float t = u_time;
+  float t = .1 * u_time;
+  float cycleDuration = 15.;
+  t = mod(t - cycleDuration, cycleDuration);
+  float timeBlend = smoothstep(0., .5 * cycleDuration, t) * (1. - smoothstep(.5 * cycleDuration, cycleDuration, t));
 
   float atg = atan(uv.y, uv.x) + .001;
+  vec2 polar_uv1 = vec2(atg, pow(length(uv), -.6) + t);
+  vec2 polar_uv2 = vec2(atg, pow(length(uv), -.6) + mod(t + .5 * cycleDuration, cycleDuration));
+  vec2 polar_uv = mix(polar_uv1, polar_uv2, timeBlend);
 
-  vec2 polar_uv = vec2(atg, pow(length(uv), -.6) + .1 * t);
   polar_uv *= u_noiseScale;
-
-  float cycleDuration = 40.;
-  t = mod(t - cycleDuration, cycleDuration);
-  float blend = smoothstep(0., .5 * cycleDuration, t) * (1. - smoothstep(.5 * cycleDuration, cycleDuration, t));
-  float noise1 = getNoise(uv, polar_uv, t);
-  float noise2 = getNoise(uv, polar_uv, mod(t + .5 * cycleDuration, cycleDuration));
-  float noise = mix(noise2, noise1, blend);
-
+  float noise = getNoise(uv, polar_uv, u_time);
   uv *= (.8 + 1.2 * noise);
 
   float ringShape = getRingShape(uv);
