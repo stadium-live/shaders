@@ -90,7 +90,7 @@ export const homeShaders = [
     image: smokeRingImg,
     url: '/smoke-ring',
     ShaderComponent: SmokeRing,
-    shaderConfig: smokeRingPresets[1].params,
+    shaderConfig: smokeRingPresets[3].params,
     style: { background: '#4082FF' },
   },
   {

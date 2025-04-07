@@ -93,7 +93,7 @@ const SmokeRingWithControls = () => {
         name,
         button(() => {
           setParamsSafe(params, setParams, {
-            ...params,
+            ...preset,
             speed: Math.abs(params.speed),
             reverse: params.speed < 0,
           });
