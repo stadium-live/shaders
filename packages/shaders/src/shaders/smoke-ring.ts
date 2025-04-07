@@ -97,17 +97,22 @@ void main() {
   ${sizingSquareUV}
 
   float t = .1 * u_time;
-  float cycleDuration = 15.;
-  t = mod(t - cycleDuration, cycleDuration);
-  float timeBlend = smoothstep(0., .5 * cycleDuration, t) * (1. - smoothstep(.5 * cycleDuration, cycleDuration, t));
+  
+  float cycleDuration = 3.;
+  float localTime1 = mod(t + cycleDuration, 2. * cycleDuration);
+  float localTime2 = mod(t, 2. * cycleDuration);
+  float timeBlend = .5 + .5 * sin(t * PI / cycleDuration - .5 * PI);
 
   float atg = atan(uv.y, uv.x) + .001;
-  vec2 polar_uv1 = vec2(atg, pow(length(uv), -.6) + t);
-  vec2 polar_uv2 = vec2(atg, pow(length(uv), -.6) + mod(t + .5 * cycleDuration, cycleDuration));
-  vec2 polar_uv = mix(polar_uv1, polar_uv2, timeBlend);
+  vec2 polar_uv1 = vec2(atg, pow(length(uv), -.6) + localTime1);
+  polar_uv1 *= u_noiseScale;
+  float noise1 = getNoise(uv, polar_uv1, u_time);
+  vec2 polar_uv2 = vec2(atg, pow(length(uv), -.6) + localTime2);
+  polar_uv2 *= u_noiseScale;
+  float noise2 = getNoise(uv, polar_uv2, u_time);
+  
+  float noise = mix(noise1, noise2, timeBlend);
 
-  polar_uv *= u_noiseScale;
-  float noise = getNoise(uv, polar_uv, u_time);
   uv *= (.8 + 1.2 * noise);
 
   float ringShape = getRingShape(uv);
@@ -132,7 +137,6 @@ void main() {
   color += u_colorBack.rgb * ringShapeOuter * (1. - u_colorOuter.a) * background;
   
   fragColor = vec4(color, opacity);
-  // fragColor = vec4(vec3(noise), 1.);
 }
 `;
 
