@@ -113,7 +113,7 @@ void main() {
   float shape = clamp(voronoiRes.w, 0., 1.);
   float mixer = shape * (u_colorsCount - 1.);
   mixer = (shape - .5 / u_colorsCount) * u_colorsCount;
-  float steps = max(1., u_stepsPerColor + 1.);
+  float steps = max(1., u_stepsPerColor);
 
   vec4 gradient = u_colors[0];
   gradient.rgb *= gradient.a;
