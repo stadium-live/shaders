@@ -80,6 +80,10 @@ export { godRaysFragmentShader, type GodRaysParams, type GodRaysUniforms } from 
 /** Single-color spiral shape */
 export { spiralFragmentShader, type SpiralParams, type SpiralUniforms } from './shaders/spiral';
 
+// ----- Swirl gradient ----- //
+/** Multi-color radial swirl  */
+export { swirlMeta, swirlFragmentShader, type SwirlParams, type SwirlUniforms } from './shaders/swirl';
+
 // ----- Utils ----- //
 export { getShaderColorFromString } from './get-shader-color-from-string';
 export { getShaderNoiseTexture } from './get-shader-noise-texture';
