@@ -39,6 +39,8 @@ import {
   spiralPresets,
   Swirl,
   swirlPresets,
+  Dithering,
+  ditheringPresets,
 } from '@paper-design/shaders-react';
 import { StaticImageData } from 'next/image';
 import TextureTest from './app/texture-test/page';
@@ -155,5 +157,11 @@ export const homeShaders = [
     url: '/swirl',
     ShaderComponent: Swirl,
     shaderConfig: { ...swirlPresets[0].params, scale: 1 },
+  },
+  {
+    name: 'dithering',
+    url: '/dithering',
+    ShaderComponent: Dithering,
+    shaderConfig: { ...ditheringPresets[0].params },
   },
 ] satisfies HomeShaderConfig[];

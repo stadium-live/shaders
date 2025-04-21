@@ -1,11 +1,6 @@
 import type { vec4 } from '../types';
 import type { ShaderMotionParams } from '../shader-mount';
-import {
-  sizingUniformsDeclaration,
-  sizingPatternUV,
-  type ShaderSizingParams,
-  type ShaderSizingUniforms,
-} from '../shader-sizing';
+import { sizingVariablesDeclaration, type ShaderSizingParams, type ShaderSizingUniforms } from '../shader-sizing';
 import { declarePI, declareRandom, declareRotate } from '../shader-utils';
 
 export const dotOrbitMeta = {
@@ -29,10 +24,6 @@ export const dotOrbitFragmentShader: string = `#version 300 es
 precision highp float;
 
 uniform float u_time;
-uniform float u_pixelRatio;
-uniform vec2 u_resolution;
-
-${sizingUniformsDeclaration}
 
 uniform vec4 u_colors[${dotOrbitMeta.maxColorCount}];
 uniform float u_colorsCount;
@@ -40,6 +31,8 @@ uniform float u_stepsPerColor;
 uniform float u_dotSize;
 uniform float u_dotSizeRange;
 uniform float u_spreading;
+
+${sizingVariablesDeclaration}
 
 out vec4 fragColor;
 
@@ -81,12 +74,14 @@ vec3 voronoiShape(vec2 uv, float time) {
 }
 
 void main() {
-  ${sizingPatternUV}
-  uv *= .015;
-
+  
+  vec2 shape_uv = v_patternUV;
+  shape_uv += .5;
+  shape_uv *= .015;
+  
   float t = u_time;
 
-  vec3 voronoi = voronoiShape(uv, t) + 1e-4;
+  vec3 voronoi = voronoiShape(shape_uv, t) + 1e-4;
 
   float radius = .25 * clamp(u_dotSize, 0., 1.) - .5 * clamp(u_dotSizeRange, 0., 1.) * voronoi[2];
   float dist = voronoi[0];

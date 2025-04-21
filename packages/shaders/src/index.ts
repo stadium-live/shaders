@@ -84,6 +84,19 @@ export { spiralFragmentShader, type SpiralParams, type SpiralUniforms } from './
 /** Multi-color radial swirl  */
 export { swirlMeta, swirlFragmentShader, type SwirlParams, type SwirlUniforms } from './shaders/swirl';
 
+// ----- Dithering ----- //
+/** Dithering effect applied over abstract shapes */
+export { ditheringFragmentShader, type DitheringParams, type DitheringUniforms } from './shaders/dithering';
+
+// ----- Grainy Gradient ----- //
+/**  */
+export {
+  grainGradientFragmentShader,
+  grainGradientMeta,
+  type GrainGradientParams,
+  type GrainGradientUniforms,
+} from './shaders/grain-gradient';
+
 // ----- Utils ----- //
 export { getShaderColorFromString } from './get-shader-color-from-string';
 export { getShaderNoiseTexture } from './get-shader-noise-texture';
