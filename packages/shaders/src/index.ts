@@ -114,6 +114,10 @@ export {
   type GrainGradientUniforms,
 } from './shaders/grain-gradient';
 
+// ----- Liquid Metal ----- //
+/**  */
+export { liquidMetalFragmentShader, type LiquidMetalParams, type LiquidMetalUniforms } from './shaders/liquid-metal';
+
 // ----- Utils ----- //
 export { getShaderColorFromString } from './get-shader-color-from-string';
 export { getShaderNoiseTexture } from './get-shader-noise-texture';

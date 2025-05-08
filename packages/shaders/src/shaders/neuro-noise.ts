@@ -60,7 +60,7 @@ void main() {
 
   vec3 color = mix(u_colorBack.rgb * u_colorBack.a, u_colorFront.rgb * u_colorFront.a, noise);
   float opacity = mix(u_colorBack.a, u_colorFront.a, noise);
-
+  
   ${colorBandingFix}
 
   fragColor = vec4(color, opacity);
