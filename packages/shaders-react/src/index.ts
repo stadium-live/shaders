@@ -58,20 +58,34 @@ export type { SwirlProps } from './shaders/swirl';
 export type { SwirlUniforms, SwirlParams } from '@paper-design/shaders';
 
 export { Dithering, ditheringPresets } from './shaders/dithering';
-export { type DitheringProps } from './shaders/dithering';
-export { type DitheringUniforms, type DitheringParams } from '@paper-design/shaders';
+export type { DitheringProps } from './shaders/dithering';
+export type { DitheringUniforms, DitheringParams } from '@paper-design/shaders';
 
 export { GrainGradient, grainGradientPresets } from './shaders/grain-gradient';
-export { type GrainGradientProps } from './shaders/grain-gradient';
-export { type GrainGradientUniforms, type GrainGradientParams } from '@paper-design/shaders';
+export type { GrainGradientProps } from './shaders/grain-gradient';
+export type { GrainGradientUniforms, GrainGradientParams } from '@paper-design/shaders';
 
 export { LiquidMetal, liquidMetalPresets } from './shaders/liquid-metal';
-export { type LiquidMetalProps } from './shaders/liquid-metal';
-export { type LiquidMetalUniforms, type LiquidMetalParams } from '@paper-design/shaders';
+export type { LiquidMetalProps } from './shaders/liquid-metal';
+export type { LiquidMetalUniforms, LiquidMetalParams } from '@paper-design/shaders';
 
 export { PulsingBorder, pulsingBorderPresets } from './shaders/pulsing-border';
-export { type PulsingBorderProps } from './shaders/pulsing-border';
-export { type PulsingBorderUniforms, type PulsingBorderParams } from '@paper-design/shaders';
+export type { PulsingBorderProps } from './shaders/pulsing-border';
+export type { PulsingBorderUniforms, PulsingBorderParams } from '@paper-design/shaders';
 
 export { isPaperShaderElement, getShaderColorFromString } from '@paper-design/shaders';
 export type { ShaderFit, ShaderSizingParams, ShaderSizingUniforms } from '@paper-design/shaders';
+
+export {
+  dotOrbitMeta,
+  godRaysMeta,
+  grainGradientMeta,
+  meshGradientMeta,
+  metaballsMeta,
+  pulsingBorderMeta,
+  simplexNoiseMeta,
+  smokeRingMeta,
+  swirlMeta,
+  voronoiMeta,
+  warpMeta,
+} from '@paper-design/shaders';
