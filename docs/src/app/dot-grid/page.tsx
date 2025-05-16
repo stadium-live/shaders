@@ -13,21 +13,7 @@ import { cleanUpLevaParams } from '@/helpers/clean-up-leva-params';
  * You can copy/paste this example to use DotGrid in your app
  */
 const DotGridExample = () => {
-  return (
-    <DotGrid
-      colorBack="#000000"
-      colorFill="#ffffff"
-      colorStroke="#f0a519"
-      dotSize={2}
-      gridSpacingX={50}
-      gridSpacingY={50}
-      strokeWidth={0}
-      sizeRange={0}
-      opacityRange={0}
-      shape="circle"
-      style={{ position: 'fixed', width: '100%', height: '100%' }}
-    />
-  );
+  return <DotGrid style={{ position: 'fixed', width: '100%', height: '100%' }} />;
 };
 
 /**
@@ -44,12 +30,12 @@ const DotGridWithControls = () => {
           colorBack: { value: defaults.colorBack, order: 100 },
           colorFill: { value: defaults.colorFill, order: 101 },
           colorStroke: { value: defaults.colorStroke, order: 102 },
-          dotSize: { value: defaults.dotSize, min: 1, max: 100, order: 301 },
-          gridSpacingX: { value: defaults.gridSpacingX, min: 2, max: 500, order: 302 },
-          gridSpacingY: { value: defaults.gridSpacingY, min: 2, max: 500, order: 303 },
-          strokeWidth: { value: defaults.dotSize, min: 0, max: 50, order: 304 },
-          sizeRange: { value: defaults.gridSpacingY, min: 0, max: 1, order: 305 },
-          opacityRange: { value: defaults.gridSpacingY, min: 0, max: 1, order: 306 },
+          size: { value: defaults.size, min: 1, max: 100, order: 301 },
+          gapX: { value: defaults.gapX, min: 2, max: 500, order: 302 },
+          gapY: { value: defaults.gapY, min: 2, max: 500, order: 303 },
+          strokeWidth: { value: defaults.strokeWidth, min: 0, max: 50, order: 304 },
+          sizeRange: { value: defaults.sizeRange, min: 0, max: 1, order: 305 },
+          opacityRange: { value: defaults.opacityRange, min: 0, max: 1, order: 306 },
           shape: {
             value: defaults.shape,
             options: Object.keys(DotGridShapes) as DotGridShape[],
