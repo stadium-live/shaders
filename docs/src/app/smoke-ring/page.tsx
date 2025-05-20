@@ -9,7 +9,7 @@ import { BackButton } from '@/components/back-button';
 import { cleanUpLevaParams } from '@/helpers/clean-up-leva-params';
 import { smokeRingMeta, ShaderFit, ShaderFitOptions } from '@paper-design/shaders';
 import { useColors } from '@/helpers/use-colors';
-import { toHsla } from '@/helpers/to-rgba';
+import { toHsla } from '@/helpers/to-hsla';
 
 /**
  * You can copy/paste this example to use SmokeRing in your app

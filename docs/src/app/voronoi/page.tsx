@@ -9,7 +9,7 @@ import { voronoiMeta, ShaderFitOptions, ShaderFit } from '@paper-design/shaders'
 import { useControls, button, folder } from 'leva';
 import Link from 'next/link';
 import { useColors } from '@/helpers/use-colors';
-import { toHsla } from '@/helpers/to-rgba';
+import { toHsla } from '@/helpers/to-hsla';
 
 /**
  * You can copy/paste this example to use Voronoi in your app

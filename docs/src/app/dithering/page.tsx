@@ -16,7 +16,7 @@ import {
   ShaderFitOptions,
 } from '@paper-design/shaders';
 import { ShaderFit } from '@paper-design/shaders';
-import { toHsla } from '@/helpers/to-rgba';
+import { toHsla } from '@/helpers/to-hsla';
 
 /**
  * You can copy/paste this example to use Dithering in your app

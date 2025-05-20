@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { BackButton } from '@/components/back-button';
 import { cleanUpLevaParams } from '@/helpers/clean-up-leva-params';
 import { ShaderFit, ShaderFitOptions } from '@paper-design/shaders';
-import { toHsla } from '@/helpers/to-rgba';
+import { toHsla } from '@/helpers/to-hsla';
 /**
  * You can copy/paste this example to use PerlinNoise in your app
  */

@@ -1,6 +1,6 @@
 import { folder, useControls } from 'leva';
 import { setParamsSafe } from './use-reset-leva-params';
-import { toHsla } from './to-rgba';
+import { toHsla } from './to-hsla';
 
 interface UseColorsArgs {
   defaultColors: string[];
