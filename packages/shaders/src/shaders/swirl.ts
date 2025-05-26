@@ -62,15 +62,12 @@ void main() {
   float mid = smoothstep(.2, .4, pow(l, twist));
   shape = mix(0., shape, mid);
 
+  shape = clamp(shape - .5 / u_colorsCount, 0., 1.);
+
   float edge_w = fwidth(shape);
   
+  float totalShape = smoothstep(0., u_softness + 2. * edge_w, clamp(shape * u_colorsCount, 0., 1.));
   float mixer = shape * (u_colorsCount - 1.);
-
-  float totalShape = clamp(mixer, 0., 1.);      
-  totalShape = smoothstep(.5 - .5 * u_softness, .5 + .5 * u_softness + edge_w, totalShape);
-
-  mixer -= 1. / (u_colorsCount - 1.);
-  float softness = u_softness + (.1 + .012 * u_colorsCount) * smoothstep(.6, .2, pow(l, twist));
 
   vec4 gradient = u_colors[0];
   gradient.rgb *= gradient.a;
