@@ -1,29 +1,26 @@
 import type { vec4 } from '../types.js';
 import type { ShaderMotionParams } from '../shader-mount.js';
 import { sizingVariablesDeclaration, type ShaderSizingParams, type ShaderSizingUniforms } from '../shader-sizing.js';
-import { declarePI, declareRandom, declareRotate, colorBandingFix } from '../shader-utils.js';
+import { declarePI, declareRandom, declareRotate, declareValueNoise, colorBandingFix } from '../shader-utils.js';
 
 export const godRaysMeta = {
   maxColorCount: 5,
 } as const;
 
 /**
- * GodRays pattern
- * The artwork by Ksenia Kondrashova
- * Renders a number of circular shapes with gooey effect applied
+ * Radial rays animated from center
  *
- * Uniforms include:
+ * Uniforms:
+ * - u_colorBack, u_colorBloom (RGBA)
+ * - u_colors (vec4[]), u_colorsCount (float used as integer)
+ * - u_frequency: rays density
+ * - u_density (0..1): number of visible rays
+ * - u_spotty: density of spots on the ray (higher = more spots)
+ * - u_midSize, u_midIntensity: central shape over the rays
+ * - u_bloom (0..1): normal to additive blending mix
  *
- * - u_colorBack: background RGBA color
- * - u_colorBloom:
- * - uColors (vec4[]): Input RGBA colors
- * - u_frequency: the frequency of rays (the number of sectors)
- * - u_spotty: the density of spots in the rings (higher = more spots)
- * - u_midSize: the size of the central shape within the rings
- * - u_midIntensity: the influence of the central shape on the rings
- * - u_density (0 .. 1): the number of visible rays
- * - u_bloom (0 .. 1): normal / additive bloom
  */
+
 export const godRaysFragmentShader: string = `#version 300 es
 precision mediump float;
 
@@ -48,25 +45,10 @@ out vec4 fragColor;
 ${declarePI}
 ${declareRandom}
 ${declareRotate}
+${declareValueNoise}
 
 float hash(float n) {
   return fract(sin(n * 43758.5453123) * 43758.5453123);
-}
-
-float valueNoise(vec2 uv) {
-  vec2 i = floor(uv);
-  vec2 f = fract(uv);
-
-  float a = random(i);
-  float b = random(i + vec2(1.0, 0.0));
-  float c = random(i + vec2(0.0, 1.0));
-  float d = random(i + vec2(1.0, 1.0));
-
-  vec2 u = f * f * (3.0 - 2.0 * f);
-
-  float x1 = mix(a, b, u.x);
-  float x2 = mix(c, d, u.x);
-  return mix(x1, x2, u.y);
 }
 
 float raysShape(vec2 uv, float r, float freq, float density, float radius) {
