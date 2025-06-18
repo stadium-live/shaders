@@ -36,6 +36,7 @@ export const grainGradientMeta = {
  * Note: grains are calculated using gl_FragCoord & u_resolution, meaning grains don't react to scaling and fit
  *
  */
+
 // language=GLSL
 export const grainGradientFragmentShader: string = `#version 300 es
 precision mediump float;

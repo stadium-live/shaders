@@ -521,6 +521,7 @@ export class ShaderMount {
 }
 
 /** Vertex shader for the shader mount */
+// language=GLSL
 const vertexShaderSource = `#version 300 es
 precision mediump float;
 
