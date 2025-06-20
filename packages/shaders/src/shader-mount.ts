@@ -207,7 +207,7 @@ export class ShaderMount {
     // - visualViewport.width is affected by hard scrollbars, so they need to be added manually
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     const innerWidth = visualViewport
-      ? visualViewport.scale * (visualViewport.width + scrollbarWidth)
+      ? visualViewport.scale * visualViewport.width + scrollbarWidth
       : window.innerWidth;
 
     // Slight rounding here helps the <canvas> maintain a consistent computed size as the zoom level changes
