@@ -28,7 +28,7 @@ export const defaultPreset: SwirlPreset = {
     colors: ['#0b7f05', '#ffe785', '#ff335c'],
     bandCount: 5,
     twist: 0.11,
-    softness: 0.01,
+    softness: 0,
     noiseFrequency: 1.2,
     noisePower: 0.46,
   },
