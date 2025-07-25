@@ -1,6 +1,5 @@
-# @paper-design/shaders
-
-## Version 0.0.40 (unreleased)
+# @paper-design/shaders-react
+## Version 0.0.44
 
 ### General
 
@@ -53,7 +52,7 @@
 
 ---
 
-### 🆕 New Shaders
+### New Shaders
 
 - Added `StaticMeshGradient` component
 - Added `StaticRadialGradient` component

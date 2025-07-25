@@ -23,3 +23,6 @@ import { MeshGradient, DotOrbit } from '@paper-design/shaders-react';
 
 // these settings can be configured in code or designed in Paper
 ```
+
+## Release notes
+[View changelog →](./../../CHANGELOG.md)
