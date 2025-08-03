@@ -43,7 +43,7 @@ export const dropletPreset: SpiralPreset = {
     colorFront: '#bf40a0',
     density: 0.9,
     distortion: 0,
-    strokeWidth: 0.25,
+    strokeWidth: 0.75,
     strokeTaper: 0.18,
     strokeCap: 1,
     noise: 0.74,
