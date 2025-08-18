@@ -1,6 +1,6 @@
 import type { ShaderMotionParams } from '../shader-mount.js';
 import { sizingVariablesDeclaration, type ShaderSizingParams, type ShaderSizingUniforms } from '../shader-sizing.js';
-import { declareImageFrame, declareRotate, declarePI, declareFiberNoise } from '../shader-utils.js';
+import { rotation2, declarePI, fiberNoise, textureRandomizerR } from '../shader-utils.js';
 
 /**
  * Mimicking paper texture with a combination of noises
@@ -52,15 +52,21 @@ ${sizingVariablesDeclaration}
 
 out vec4 fragColor;
 
-${declarePI}
-${declareRotate}
-${declareImageFrame}
+float getUvFrame(vec2 uv) {
+  float aax = 2. * fwidth(uv.x);
+  float aay = 2. * fwidth(uv.y);
 
+  float left   = smoothstep(0., aax, uv.x);
+  float right  = smoothstep(1., 1. - aax, uv.x);
+  float bottom = smoothstep(0., aay, uv.y);
+  float top    = smoothstep(1., 1. - aay, uv.y);
 
-float randomR(vec2 p) {
-  vec2 uv = floor(p) / 100. + .5;
-  return texture(u_noiseTexture, fract(uv)).r;
+  return left * right * bottom * top;
 }
+
+${declarePI}
+${rotation2}
+${textureRandomizerR}
 float valueNoise(vec2 st) {
   vec2 i = floor(st);
   vec2 f = fract(st);
@@ -103,7 +109,7 @@ float roughness(vec2 p) {
   return o / 3.;
 }
 
-${declareFiberNoise}
+${fiberNoise}
 
 vec2 randomGB(vec2 p) {
   vec2 uv = floor(p) / 50. + .5;
