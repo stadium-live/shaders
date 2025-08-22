@@ -81,3 +81,4 @@ We ask that you link to Paper Shaders if you use this code (it helps us continue
 
 [Read the full license →](./LICENSE)
 
+Required Notice: Copyright Lost Coast Labs, Inc. (http://paper.design)
