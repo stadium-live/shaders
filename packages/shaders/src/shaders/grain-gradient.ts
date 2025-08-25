@@ -181,8 +181,8 @@ void main() {
     // Grid (dots)
 
     float stripeIdx = floor(2. * shape_uv.x / TWO_PI);
-    float rand = hash11(stripeIdx + 2.);
-    rand = sign(rand - .5) * pow(.2 + abs(rand), .3);
+    float rand = hash11(stripeIdx * 100.);
+    rand = sign(rand - .5) * pow(4. * abs(rand), .3);
     shape = sin(shape_uv.x) * cos(shape_uv.y - 5. * rand * t);
     shape = pow(shape, 4.);
 
