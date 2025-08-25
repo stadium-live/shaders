@@ -2,6 +2,8 @@
 
 ## Usage
 
+This package expects `@shopify/react-native-skia@1.12.4` to be installed in your project.
+
 ```
 import { MeshGradient, DotOrbit } from '@paper-design/shaders-react-native';
 

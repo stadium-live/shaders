@@ -29,13 +29,13 @@
   "devDependencies": {
     "@types/react": "19.1.0",
     "@types/react-native": "0.73.0",
-    "@shopify/react-native-skia": "^2.2.0"
+    "@shopify/react-native-skia": "1.12.4"
   },
   "peerDependencies": {
     "@types/react": "^18 || ^19",
     "react": "^18 || ^19",
     "react-native": "*",
-    "@shopify/react-native-skia": "^2.2.0"
+    "@shopify/react-native-skia": "1.12.4"
   },
   "peerDependenciesMeta": {
     "@types/react": {
