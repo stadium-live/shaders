@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import { colorPropsAreEqual } from '../color-props-are-equal.js';
 import {
@@ -95,7 +95,7 @@ export const staticMeshGradientPresets: StaticMeshGradientPreset[] = [
   seaPreset,
 ];
 
-export const StaticMeshGradient: React.FC<StaticMeshGradientProps> = memo(function StaticMeshGradientImpl({
+export const StaticMeshGradient: FC<StaticMeshGradientProps> = memo(function StaticMeshGradientImpl({
   // Own props
   speed = defaultPreset.params.speed,
   frame = defaultPreset.params.frame,

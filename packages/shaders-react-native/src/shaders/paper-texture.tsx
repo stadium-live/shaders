@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import { colorPropsAreEqual } from '../color-props-are-equal.js';
 import {
@@ -121,7 +121,7 @@ export const paperTexturePresets: PaperTexturePreset[] = [
   detailsPreset,
 ] as const;
 
-export const PaperTexture: React.FC<PaperTextureProps> = memo(function PaperTextureImpl({
+export const PaperTexture: FC<PaperTextureProps> = memo(function PaperTextureImpl({
   // Own props
   speed = defaultPreset.params.speed,
   frame = defaultPreset.params.frame,

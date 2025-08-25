@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import {
   defaultObjectSizing,
@@ -83,7 +83,7 @@ export const candyPreset: SwirlPreset = {
 
 export const swirlPresets: SwirlPreset[] = [defaultPreset, jamesBondPreset, openingPreset, candyPreset];
 
-export const Swirl: React.FC<SwirlProps> = memo(function SwirlImpl({
+export const Swirl: FC<SwirlProps> = memo(function SwirlImpl({
   // Own props
   speed = defaultPreset.params.speed,
   frame = defaultPreset.params.frame,

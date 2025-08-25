@@ -159,7 +159,12 @@ export const ShaderMount: React.FC<ShaderMountProps> = forwardRef<CanvasRef, Sha
   if (!effectRef.current) return null;
 
   return (
-    <Canvas ref={mergedRef} style={style} onLayout={handleLayout} {...viewProps}>
+    <Canvas
+      ref={mergedRef as unknown as React.Ref<unknown>}
+      style={style}
+      onLayout={handleLayout}
+      {...viewProps}
+    >
       <Fill>
         <SkiaShader source={effectRef.current} uniforms={uniforms as any} />
       </Fill>

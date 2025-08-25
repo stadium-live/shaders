@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import { colorPropsAreEqual } from '../color-props-are-equal.js';
 import {
@@ -84,7 +84,7 @@ export const wormsPreset: PerlinNoisePreset = {
 
 export const perlinNoisePresets: PerlinNoisePreset[] = [defaultPreset, nintendoWaterPreset, mossPreset, wormsPreset];
 
-export const PerlinNoise: React.FC<PerlinNoiseProps> = memo(function PerlinNoiseImpl({
+export const PerlinNoise: FC<PerlinNoiseProps> = memo(function PerlinNoiseImpl({
   // Own props
   speed = defaultPreset.params.speed,
   frame = defaultPreset.params.frame,

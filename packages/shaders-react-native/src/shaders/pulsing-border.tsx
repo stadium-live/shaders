@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import { colorPropsAreEqual } from '../color-props-are-equal.js';
 import {
@@ -111,7 +111,7 @@ export const pulsingBorderPresets: PulsingBorderPreset[] = [
   solidLinePreset,
 ];
 
-export const PulsingBorder: React.FC<PulsingBorderProps> = memo(function PulsingBorderImpl({
+export const PulsingBorder: FC<PulsingBorderProps> = memo(function PulsingBorderImpl({
   // Own props
   speed = defaultPreset.params.speed,
   frame = defaultPreset.params.frame,

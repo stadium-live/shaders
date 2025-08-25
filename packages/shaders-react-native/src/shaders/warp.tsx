@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import { colorPropsAreEqual } from '../color-props-are-equal.js';
 import {
@@ -141,7 +141,7 @@ export const warpPresets: WarpPreset[] = [
   presetPassion,
 ];
 
-export const Warp: React.FC<WarpProps> = memo(function WarpImpl({
+export const Warp: FC<WarpProps> = memo(function WarpImpl({
   // Own props
   speed = defaultPreset.params.speed,
   frame = defaultPreset.params.frame,

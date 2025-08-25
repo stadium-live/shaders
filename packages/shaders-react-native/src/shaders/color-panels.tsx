@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import { colorPropsAreEqual } from '../color-props-are-equal.js';
 import {
@@ -105,7 +105,7 @@ export const openingPreset: ColorPanelsPreset = {
 
 export const colorPanelsPresets: ColorPanelsPreset[] = [defaultPreset, glassPreset, gradientPreset, openingPreset];
 
-export const ColorPanels: React.FC<ColorPanelsProps> = memo(function ColorPanelsImpl({
+export const ColorPanels: FC<ColorPanelsProps> = memo(function ColorPanelsImpl({
   // Own props
   speed = defaultPreset.params.speed,
   frame = defaultPreset.params.frame,

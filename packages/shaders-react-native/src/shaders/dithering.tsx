@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import {
   getShaderColorFromString,
@@ -111,7 +111,7 @@ export const ditheringPresets: DitheringPreset[] = [
   swirlPreset,
 ];
 
-export const Dithering: React.FC<DitheringProps> = memo(function DitheringImpl({
+export const Dithering: FC<DitheringProps> = memo(function DitheringImpl({
   // Own props
   speed = defaultPreset.params.speed,
   frame = defaultPreset.params.frame,

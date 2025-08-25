@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import { colorPropsAreEqual } from '../color-props-are-equal.js';
 import {
@@ -88,7 +88,7 @@ export const naturalPreset: ImageDitheringPreset = {
 
 export const imageDitheringPresets: ImageDitheringPreset[] = [defaultPreset, noisePreset, retroPreset, naturalPreset];
 
-export const ImageDithering: React.FC<ImageDitheringProps> = memo(function ImageDitheringImpl({
+export const ImageDithering: FC<ImageDitheringProps> = memo(function ImageDitheringImpl({
   // Own props
   speed = defaultPreset.params.speed,
   frame = defaultPreset.params.frame,

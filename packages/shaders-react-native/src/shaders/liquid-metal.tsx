@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import { colorPropsAreEqual } from '../color-props-are-equal.js';
 import {
@@ -94,7 +94,7 @@ export const fullScreenPreset: LiquidMetalPreset = {
 
 export const liquidMetalPresets: LiquidMetalPreset[] = [defaultPreset, containedPreset, dropsPreset, fullScreenPreset];
 
-export const LiquidMetal: React.FC<LiquidMetalProps> = memo(function LiquidMetalImpl({
+export const LiquidMetal: FC<LiquidMetalProps> = memo(function LiquidMetalImpl({
   // Own props
   colorBack = defaultPreset.params.colorBack,
   colorTint = defaultPreset.params.colorTint,

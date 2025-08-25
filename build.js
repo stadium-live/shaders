@@ -6,12 +6,13 @@ async function build(packageDir) {
   const files = glob.sync(`${packageDir}/src/**/*.ts*`);
   const entryPoints = files.filter((file) => !file.includes('.test.'));
   const outDir = `${packageDir}/dist`;
-  const tsconfig = `${packageDir}/tsconfig.build.json`;
+  const tsconfig = `tsconfig.build.json`;
 
   // ----- Generate type declaration files ----- //
   try {
-    execSync(`tsc --emitDeclarationOnly --declaration --outDir ${outDir} --project ${tsconfig} --pretty`, {
+    execSync(`tsc --emitDeclarationOnly --declaration --outDir dist --project ${tsconfig} --pretty`, {
       stdio: 'inherit',
+      cwd: packageDir,
     });
     console.log(`Built ${outDir}/index.d.ts`);
   } catch (error) {
@@ -48,5 +49,4 @@ async function build(packageDir) {
 }
 
 build('packages/shaders');
-build('packages/shaders-react');
 build('packages/shaders-react-native');

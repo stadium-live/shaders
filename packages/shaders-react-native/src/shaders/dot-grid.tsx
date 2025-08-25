@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import { colorPropsAreEqual } from '../color-props-are-equal.js';
 import {
@@ -86,7 +86,7 @@ const wallpaperPreset: DotGridPreset = {
 
 export const dotGridPresets: DotGridPreset[] = [defaultPreset, trianglesPreset, treeLinePreset, wallpaperPreset];
 
-export const DotGrid: React.FC<DotGridProps> = memo(function DotGridImpl({
+export const DotGrid: FC<DotGridProps> = memo(function DotGridImpl({
   // Own props
   colorBack = defaultPreset.params.colorBack,
   colorFill = defaultPreset.params.colorFill,

@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import { colorPropsAreEqual } from '../color-props-are-equal.js';
 import {
@@ -97,7 +97,7 @@ export const slowMoPreset: WaterPreset = {
 
 export const waterPresets: WaterPreset[] = [defaultPreset, slowMoPreset, abstractPreset, streamingPreset];
 
-export const Water: React.FC<WaterProps> = memo(function WaterImpl({
+export const Water: FC<WaterProps> = memo(function WaterImpl({
   // Own props
   speed = defaultPreset.params.speed,
   frame = defaultPreset.params.frame,

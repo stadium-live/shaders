@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import { colorPropsAreEqual } from '../color-props-are-equal.js';
 import {
@@ -110,7 +110,7 @@ export const staticRadialGradientPresets: StaticRadialGradientPreset[] = [
   radialPreset,
 ];
 
-export const StaticRadialGradient: React.FC<StaticRadialGradientProps> = memo(function StaticRadialGradientImpl({
+export const StaticRadialGradient: FC<StaticRadialGradientProps> = memo(function StaticRadialGradientImpl({
   // Own props
   speed = defaultPreset.params.speed,
   frame = defaultPreset.params.frame,

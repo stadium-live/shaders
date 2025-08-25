@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import { colorPropsAreEqual } from '../color-props-are-equal.js';
 import {
@@ -95,7 +95,7 @@ export const etherPreset: GodRaysPreset = {
 
 export const godRaysPresets: GodRaysPreset[] = [defaultPreset, warpPreset, linearPreset, etherPreset];
 
-export const GodRays: React.FC<GodRaysProps> = memo(function GodRaysImpl({
+export const GodRays: FC<GodRaysProps> = memo(function GodRaysImpl({
   // Own props
   speed = defaultPreset.params.speed,
   frame = defaultPreset.params.frame,

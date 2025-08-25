@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import { colorPropsAreEqual } from '../color-props-are-equal.js';
 import {
@@ -66,7 +66,7 @@ export const inkPreset: MeshGradientPreset = {
 
 export const meshGradientPresets: MeshGradientPreset[] = [defaultPreset, inkPreset, purplePreset, beachPreset];
 
-export const MeshGradient: React.FC<MeshGradientProps> = memo(function MeshGradientImpl({
+export const MeshGradient: FC<MeshGradientProps> = memo(function MeshGradientImpl({
   // Own props
   speed = defaultPreset.params.speed,
   frame = defaultPreset.params.frame,

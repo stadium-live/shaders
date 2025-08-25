@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import { colorPropsAreEqual } from '../color-props-are-equal.js';
 import {
@@ -81,7 +81,7 @@ export const neuroNoisePresets: NeuroNoisePreset[] = [
   ghostPreset,
 ] as const;
 
-export const NeuroNoise: React.FC<NeuroNoiseProps> = memo(function NeuroNoiseImpl({
+export const NeuroNoise: FC<NeuroNoiseProps> = memo(function NeuroNoiseImpl({
   // Own props
   speed = defaultPreset.params.speed,
   frame = defaultPreset.params.frame,

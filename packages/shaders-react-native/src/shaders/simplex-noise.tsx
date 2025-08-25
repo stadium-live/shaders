@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import { colorPropsAreEqual } from '../color-props-are-equal.js';
 import {
@@ -73,7 +73,7 @@ export const simplexNoisePresets: SimplexNoisePreset[] = [
   bubblegumPreset,
 ];
 
-export const SimplexNoise: React.FC<SimplexNoiseProps> = memo(function SimplexNoiseImpl({
+export const SimplexNoise: FC<SimplexNoiseProps> = memo(function SimplexNoiseImpl({
   // Own props
   speed = defaultPreset.params.speed,
   frame = defaultPreset.params.frame,
