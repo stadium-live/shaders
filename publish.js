@@ -5,7 +5,7 @@ import { readFileSync, writeFileSync } from 'fs';
 // This publish process automatically replaces workspace:* with the actual version number of other packages currently in the repo
 
 // The packages to publish – this will run in order and await each package before moving on
-const packages = ['shaders', 'shaders-react'];
+const packages = ['shaders', 'shaders-react', 'shaders-react-native'];
 
 const isDryRun = process.argv.includes('--dry-run');
 // Extract the tag value from the command line arguments
