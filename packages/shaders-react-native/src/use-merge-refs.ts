@@ -23,9 +23,9 @@ export function useMergeRefs<Instance>(refs: Array<React.Ref<Instance> | undefin
             };
       }
 
-      (ref as React.RefObject<Instance | null>).current = instance;
+      (ref as React.MutableRefObject<Instance | null>).current = instance;
       return () => {
-        (ref as React.RefObject<Instance | null>).current = null;
+        (ref as React.MutableRefObject<Instance | null>).current = null;
       };
     });
 
@@ -40,14 +40,14 @@ export function useMergeRefs<Instance>(refs: Array<React.Ref<Instance> | undefin
       return null;
     }
 
-    return (value) => {
+    return (value: Instance | null) => {
       if (cleanupRef.current) {
         cleanupRef.current();
-        (cleanupRef as React.RefObject<void | (() => void)>).current = undefined;
+        cleanupRef.current = undefined;
       }
 
       if (value != null) {
-        (cleanupRef as React.RefObject<void | (() => void)>).current = refEffect(value);
+        cleanupRef.current = refEffect(value);
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

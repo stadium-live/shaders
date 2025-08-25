@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import {
   flutedGlassFragmentShader,
@@ -108,7 +108,7 @@ export const foldsPreset: FlutedGlassPreset = {
 
 export const flutedGlassPresets: FlutedGlassPreset[] = [defaultPreset, irregularPreset, wavesPreset, foldsPreset];
 
-export const FlutedGlass: React.FC<FlutedGlassProps> = memo(function FlutedGlassImpl({
+export const FlutedGlass: FC<FlutedGlassProps> = memo(function FlutedGlassImpl({
   // Own props
   speed = defaultPreset.params.speed,
   frame = defaultPreset.params.frame,

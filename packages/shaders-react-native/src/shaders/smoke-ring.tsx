@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import { colorPropsAreEqual } from '../color-props-are-equal.js';
 import {
@@ -83,7 +83,7 @@ export const cloudPreset: SmokeRingPreset = {
 
 export const smokeRingPresets: SmokeRingPreset[] = [defaultPreset, linePreset, poisonPreset, cloudPreset];
 
-export const SmokeRing: React.FC<SmokeRingProps> = memo(function SmokeRingImpl({
+export const SmokeRing: FC<SmokeRingProps> = memo(function SmokeRingImpl({
   // Own props
   speed = defaultPreset.params.speed,
   frame = defaultPreset.params.frame,

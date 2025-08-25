@@ -29,7 +29,9 @@
   "devDependencies": {
     "@types/react": "18.2.21",
     "@types/react-native": "0.73.0",
-    "@shopify/react-native-skia": "1.12.4"
+    "@shopify/react-native-skia": "1.12.4",
+    "react": "18.2.0",
+    "react-native": "0.76.6"
   },
   "peerDependencies": {
     "@types/react": "^18 || ^19",

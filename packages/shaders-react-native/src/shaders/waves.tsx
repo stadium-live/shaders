@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import { colorPropsAreEqual } from '../color-props-are-equal.js';
 import {
@@ -84,7 +84,7 @@ export const waveRidePreset: WavesPreset = {
 
 export const wavesPresets: WavesPreset[] = [defaultPreset, groovyPreset, tangledUpPreset, waveRidePreset];
 
-export const Waves: React.FC<WavesProps> = memo(function WavesImpl({
+export const Waves: FC<WavesProps> = memo(function WavesImpl({
   // Own props
   colorFront = defaultPreset.params.colorFront,
   colorBack = defaultPreset.params.colorBack,

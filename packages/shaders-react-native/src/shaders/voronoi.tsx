@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import { colorPropsAreEqual } from '../color-props-are-equal.js';
 import {
@@ -86,7 +86,7 @@ export const lightsPreset: VoronoiPreset = {
 
 export const voronoiPresets: VoronoiPreset[] = [defaultPreset, lightsPreset, cellsPreset, bubblesPreset];
 
-export const Voronoi: React.FC<VoronoiProps> = memo(function VoronoiImpl({
+export const Voronoi: FC<VoronoiProps> = memo(function VoronoiImpl({
   // Own props
   speed = defaultPreset.params.speed,
   frame = defaultPreset.params.frame,

@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import {
   getShaderColorFromString,
@@ -119,7 +119,7 @@ export const grainGradientPresets: GrainGradientPreset[] = [
   blobPreset,
 ];
 
-export const GrainGradient: React.FC<GrainGradientProps> = memo(function GrainGradientImpl({
+export const GrainGradient: FC<GrainGradientProps> = memo(function GrainGradientImpl({
   // Own props
   speed = defaultPreset.params.speed,
   frame = defaultPreset.params.frame,

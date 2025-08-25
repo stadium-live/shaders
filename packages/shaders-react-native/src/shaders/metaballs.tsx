@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import { colorPropsAreEqual } from '../color-props-are-equal.js';
 import {
@@ -76,7 +76,7 @@ export const solarPreset: MetaballsPreset = {
 
 export const metaballsPresets: MetaballsPreset[] = [defaultPreset, inkDropsPreset, solarPreset, backgroundPreset];
 
-export const Metaballs: React.FC<MetaballsProps> = memo(function MetaballsImpl({
+export const Metaballs: FC<MetaballsProps> = memo(function MetaballsImpl({
   // Own props
   speed = defaultPreset.params.speed,
   frame = defaultPreset.params.frame,

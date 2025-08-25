@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, type FC } from 'react';
 import { ShaderMount, type ShaderComponentProps } from '../shader-mount.js';
 import { colorPropsAreEqual } from '../color-props-are-equal.js';
 import {
@@ -96,7 +96,7 @@ export const swirlPreset: SpiralPreset = {
 
 export const spiralPresets: SpiralPreset[] = [defaultPreset, junglePreset, dropletPreset, swirlPreset];
 
-export const Spiral: React.FC<SpiralProps> = memo(function SpiralImpl({
+export const Spiral: FC<SpiralProps> = memo(function SpiralImpl({
   // Own props
   speed = defaultPreset.params.speed,
   frame = defaultPreset.params.frame,
