@@ -1,5 +1,5 @@
 {
-  "name": "@paper-design/shaders-react-native",
+  "name": "@stadium-live/paper-shaders-react-native",
   "version": "0.0.46",
   "license": "MIT",
   "type": "module",
@@ -24,7 +24,7 @@
     "type-check": "tsc --project tsconfig.json"
   },
   "dependencies": {
-    "@paper-design/shaders": "workspace:*"
+    "@paper-design/shaders": "^0.0.46"
   },
   "devDependencies": {
     "@types/react": "19.1.0",
