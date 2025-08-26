@@ -1,29 +1,14 @@
 'use client';
 
 import React, { useEffect, useRef, forwardRef } from 'react';
-import {
-  Canvas,
-  Fill,
-  Shader as SkiaShader,
-  Skia,
-  type CanvasRef,
-  type SkImage,
-} from '@shopify/react-native-skia';
+import { Canvas, Fill, Shader as SkiaShader, Skia, type CanvasRef, type SkImage } from '@shopify/react-native-skia';
 import { PixelRatio, type LayoutChangeEvent, type ViewProps } from 'react-native';
 import { useMergeRefs } from './use-merge-refs.js';
 import type { ShaderMotionParams } from '@paper-design/shaders';
 import { glslToSkSL } from './glsl-to-sksl.js';
 
 interface ShaderMountUniformsReactNative {
-  [key: string]:
-    | string
-    | boolean
-    | number
-    | number[]
-    | number[][]
-    | SkImage
-    | HTMLImageElement
-    | undefined;
+  [key: string]: string | boolean | number | number[] | number[][] | SkImage | HTMLImageElement | undefined;
 }
 
 export interface ShaderMountProps extends Omit<ViewProps, 'ref'>, ShaderMotionParams {
@@ -160,12 +145,7 @@ export const ShaderMount: React.FC<ShaderMountProps> = forwardRef<CanvasRef, Sha
   if (!effectRef.current) return null;
 
   return (
-    <Canvas
-      ref={mergedRef as unknown as React.Ref<unknown>}
-      style={style}
-      onLayout={handleLayout}
-      {...viewProps}
-    >
+    <Canvas ref={mergedRef} style={style} onLayout={handleLayout} {...viewProps}>
       <Fill>
         <SkiaShader source={effectRef.current} uniforms={uniforms as any} />
       </Fill>
