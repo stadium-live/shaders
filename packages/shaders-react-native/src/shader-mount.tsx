@@ -12,6 +12,7 @@ import {
 import { PixelRatio, type LayoutChangeEvent, type ViewProps } from 'react-native';
 import { useMergeRefs } from './use-merge-refs.js';
 import type { ShaderMotionParams } from '@paper-design/shaders';
+import { glslToSkSL } from './glsl-to-sksl.js';
 
 interface ShaderMountUniformsReactNative {
   [key: string]:
@@ -86,9 +87,9 @@ export const ShaderMount: React.FC<ShaderMountProps> = forwardRef<CanvasRef, Sha
   const canvasRef = useRef<CanvasRef>(null);
   const mergedRef = useMergeRefs([canvasRef, forwardedRef]) as React.Ref<CanvasRef>;
 
-  const effectRef = useRef(Skia.RuntimeEffect.Make(fragmentShader));
+  const effectRef = useRef(Skia.RuntimeEffect.Make(glslToSkSL(fragmentShader)));
   useEffect(() => {
-    effectRef.current = Skia.RuntimeEffect.Make(fragmentShader);
+    effectRef.current = Skia.RuntimeEffect.Make(glslToSkSL(fragmentShader));
   }, [fragmentShader]);
 
   const [uniforms, setUniforms] = React.useState<Record<string, unknown>>({ u_time: frame });
